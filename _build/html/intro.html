@@ -1,0 +1,1349 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evolving active matter</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/PAM-logo4.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/PAM-logo4.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Lecture Notes on Evolving Active Matter
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lecture Notes on Evolving Active Matter</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toctree-l1 toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="intro.html#document-Branching-processes-nb">Branching Processes</a></li>
+<li class="toctree-l1 toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="intro.html#document-Traveling-Waves-nb">Traveling waves</a></li>
+<li class="toctree-l1 toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="intro.html#document-Soft PAM I">Markdown Files</a></li>
+<li class="toctree-l1 toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="intro.html#document-Soft PAM II">Markdown Files</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-notes-on-evolving-active-matter">
+<h1>Lecture Notes on Evolving Active Matter<a class="headerlink" href="#lecture-notes-on-evolving-active-matter" title="Permalink to this headline">#</a></h1>
+<p>These lecture notes are a brief summary of four lectures given in the first week of the 2023 Les Houches workshop on Active Matter, broadly interpreted.</p>
+<p>Active Matter is concerned matter that is constantly pushed out of equilibrium by local injection of energy. Energy injection is usually implemented by some kind of mechanical engine converting available (chemical) free energy into mechanical energy. For example, motors or janus particles actuated by light.</p>
+<p>These types of active matter break time reversal symmetry, but conserve particle numbers. However, a special kind of activity is replication and its flipside death, which are a hallmark of life. Here, we focus on some of the major consequences of replication, as it breaks particle conservation, injects mutations fueling evolutionary processes, within simple models. After an introduction to the different types of PAM, we discuss general patterns present even in toy models, which one could write down without getting out of your armchair. In later parts, we increase realism somewhat by considering the actual physics of soft matter systems. While we only need few biolgical facts, the reader is strongly encouraged to get inspired by thy actual dynamics of living and growing systems, as captured for example in the amazing time-lapse movies of <a class="reference external" href="https://www.wimvanegmond.com">Wim van Egmond</a>.</p>
+<div class="toctree-wrapper compound">
+<span id="document-Branching-processes-nb"></span><div class="tex2jax_ignore mathjax_ignore section" id="branching-processes">
+<h2>Branching Processes<a class="headerlink" href="#branching-processes" title="Permalink to this headline">#</a></h2>
+<p>What are general patterns we might expect when a population grows out of a single cell?</p>
+<p>One of the most basic question is to characterize how a population grows over time. Deterministically, we expect exponential growth if prolifertion at rate <span class="math notranslate nohighlight">\(a\)</span> exceeds the rate <span class="math notranslate nohighlight">\(b\)</span> of death. In many cases, both quantities are similar, for example in an epidemic situation where <span class="math notranslate nohighlight">\(R_0\)</span> is about 1, or for a slightly beneficial mutaiton in a population going through generations. In these near critical cases, it is not obvious whether a population survives rather than goes extinct by chance and, if it survives, what population size distribution on might expect.</p>
+<div class="section" id="survival-probability">
+<h3>Survival probability<a class="headerlink" href="#survival-probability" title="Permalink to this headline">#</a></h3>
+<p>To answer this question, let’s first focus on the probability <span class="math notranslate nohighlight">\(u(t|\tau)\)</span> that an individual present at time <span class="math notranslate nohighlight">\(\tau\)</span> leaves some descendants at time <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>Suppose, we already know <span class="math notranslate nohighlight">\(u(t|\tau)\)</span> and would like to estimate <span class="math notranslate nohighlight">\(u(t|\tau-\epsilon)\)</span>, i.e. pushing the initial condition further back in time. Then, if the time slice <span class="math notranslate nohighlight">\(\epsilon\)</span> is sufficiently small, we only have to consider two possible events, birth with probability <span class="math notranslate nohighlight">\(\epsilon a\)</span>, or death with probability <span class="math notranslate nohighlight">\(\epsilon b\)</span>, as the probability of double events is of order <span class="math notranslate nohighlight">\(\epsilon^2\)</span>. Thus, we can estimate</p>
+<div class="math notranslate nohighlight" id="equation-br-process-1">
+<span class="eqno">(1)<a class="headerlink" href="#equation-br-process-1" title="Permalink to this equation">#</a></span>\[ 
+u(t|\tau-\epsilon)=\left[1-\epsilon (a+b)\right] u(t|\tau)+\epsilon a \left[1-(1-u(t|\tau))^2\right] 
+\]</div>
+<p>Here, the first term on the right hand side simply says that, conditional on no death or birth event occurs within the time span <span class="math notranslate nohighlight">\(\epsilon\)</span>, the probability of survival remains unchanged.</p>
+<div class="math notranslate nohighlight">
+\[ 
+-\partial_\tau u = (a-b) u - a u^2. 
+\]</div>
+<p>Notice that, if the birth and death rates are time dependent, they have to be evaluated at the initial time <span class="math notranslate nohighlight">\(\tau\)</span>.
+For simplicity, we assume the relative growth rate difference <span class="math notranslate nohighlight">\(s\equiv (a-b)/a\ll1\)</span> is constant and small.</p>
+<p>If we further measure time in generations, <span class="math notranslate nohighlight">\(\tau\to \tau/a\)</span>, we obtain</p>
+<div class="math notranslate nohighlight" id="equation-logistic-eqn">
+<span class="eqno">(2)<a class="headerlink" href="#equation-logistic-eqn" title="Permalink to this equation">#</a></span>\[ 
+-\partial_\tau u = s u - u^2. 
+\]</div>
+<p>The resulting equation <a class="reference internal" href="#equation-logistic-eqn">(2)</a> is a logistic differential equation. Although seemingly non-linear, this equation reveals its linear nature after the following substituting <span class="math notranslate nohighlight">\(u(\tau)=\frac {s }{1-q(\tau)^{-1}}\)</span>, upon which we obtain</p>
+<div class="math notranslate nohighlight">
+\[
+-\partial_\tau q(\tau)=s q(\tau) \;.
+\]</div>
+<p>This linear equation for the fraction <span class="math notranslate nohighlight">\(q(t)\equiv \frac u{u-s}\)</span> has the solution <span class="math notranslate nohighlight">\(q(\tau)=q(t)e^{s(t-\tau)}\)</span>. Using the initial condition <span class="math notranslate nohighlight">\(q(t)=\frac 1{1-s}\)</span>, we obtain for the survival probability</p>
+<div class="math notranslate nohighlight">
+\[
+u(t|\tau)=\frac{s}{1-(1-s)e^{s(\tau-t)}}=u(t-\tau)\;.
+\]</div>
+<p>Note, that our final result only depends on the time difference. That changes if we birth and death rates are time-dependent.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># allow TeX</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;text.usetex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">tmax</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">tmax</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">s</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">s</span><span class="o">*</span><span class="n">t</span><span class="p">))</span> 
+
+<span class="c1"># Add title and axis names</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Time-dependent survival probability for selective advantage $s = 0.1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t- \tau $&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u(t-\tau)$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">s</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span> <span class="mi">0</span> <span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">tmax</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e2f85c46b4cf3d6ec25b714cfdcfdd6f70e4cf0fa860fd167a3e4177cf7128d1.png" src="_images/e2f85c46b4cf3d6ec25b714cfdcfdd6f70e4cf0fa860fd167a3e4177cf7128d1.png" />
+</div>
+</div>
+<p>First notice that we have a special solution <span class="math notranslate nohighlight">\(G_x^\infty\equiv G_x(t-\tau\to\infty)=(1-s)\)</span>, which simply corresponds to the fact that with probability <span class="math notranslate nohighlight">\((1-s)\)</span> the process goes extinct (<span class="math notranslate nohighlight">\(N(t)=0\)</span>).</p>
+<p>Substituting <span class="math notranslate nohighlight">\(G_x(t)=G_x^\infty+g_x(t)\)</span>, we have to solve the homogeneous equation</p>
+<div class="math notranslate nohighlight">
+\[
+-\partial_\tau g_x = -s g_x + g_x^2
+\]</div>
+<p>subject to final condition <span class="math notranslate nohighlight">\(x=G_x(t)=g_x(t)+1-s\)</span>, i.e., <span class="math notranslate nohighlight">\(g_x(t)=s+x-1\)</span>, and the long-time limit <span class="math notranslate nohighlight">\(g_x(-\infty)=0\)</span>.</p>
+<p>This logistic differential equation can be solved for <span class="math notranslate nohighlight">\(x\leq 1\)</span> (indicating the radius of convergence) as above, yielding</p>
+<div class="math notranslate nohighlight">
+\[
+G_x(t) = 1-s+\frac{s}{1+e^{s(t-\tau)}\frac{1-x}{s+x-1}}\;.
+\]</div>
+<p>A power series expansion returns the sought after abundance distribution, which for <span class="math notranslate nohighlight">\(\tau=0\)</span> is given by</p>
+<div class="math notranslate nohighlight" id="equation-abundance-pdf">
+<span class="eqno">(3)<a class="headerlink" href="#equation-abundance-pdf" title="Permalink to this equation">#</a></span>\[\begin{split}
+    p_n(t)=\left\{\begin{array}{cc}
+  &amp; 
+\begin{array}{cc}
+ s^2 e^{s t} \left(e^{s t}-1\right)^{n-1} \left(e^{s t}+s-1\right)^{-n-1} &amp; n\geq 1 \\
+ \frac{(1-s) \left(e^{s t}-1\right)}{e^{s t}+s-1} &amp; n=0 \\
+\end{array}
+ \\
+\end{array}\right.
+\end{split}\]</div>
+<p>Notice that <span class="math notranslate nohighlight">\(p_0(t)=1-u(t)\)</span> as expected.</p>
+<p>Since the distribution is quite broad, one would like to know some characteristic features. The mean is given by</p>
+<div class="math notranslate nohighlight" id="equation-mean-abundance">
+<span class="eqno">(5)<a class="headerlink" href="#equation-mean-abundance" title="Permalink to this equation">#</a></span>\[
+    \langle N(t) \rangle =\partial_x|_{x=1} G_x(t)=e^{st}
+\]</div>
+<p>which again is a sanity check.</p>
+<p>But, more interesting, is the mean given survival,</p>
+<div class="math notranslate nohighlight" id="equation-mean-abundance">
+<span class="eqno">(5)<a class="headerlink" href="#equation-mean-abundance" title="Permalink to this equation">#</a></span>\[
+    \langle N(t)|N(t)\geq1 \rangle =\frac{e^{st}}{u(t)}=1+\frac{e^{s t}-1}{s}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># allow TeX</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;text.usetex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">tmax</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">tmax</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">s</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">s</span> 
+
+<span class="c1"># Add title and axis names</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Growth conditional on survival for selective advantage $s = 0.1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t $&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\langle N(t)|N(t)\geq1 \rangle $&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span> <span class="mi">0</span> <span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">tmax</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/8f88ba79297acd324c01a49c4d37df7745f459562648c66013a96cad997cb97d.png" src="_images/8f88ba79297acd324c01a49c4d37df7745f459562648c66013a96cad997cb97d.png" />
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Given survival, exponential growth kicks in not until <span class="math notranslate nohighlight">\(N(t)\approx s^{-1}\)</span></p>
+</div>
+</div>
+<div class="section" id="citations">
+<h3>Citations<a class="headerlink" href="#citations" title="Permalink to this headline">#</a></h3>
+<p>You can also cite references that are stored in a <code class="docutils literal notranslate"><span class="pre">bibtex</span></code> file. For example,
+the following syntax: <code class="docutils literal notranslate"><span class="pre">{cite}`holdgraf_evidence_2014`</span></code> will render like
+this: <span id="id1">[<a class="reference internal" href="intro.html#id10" title="Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In International Conference on Cognitive Neuroscience. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.">HdHPK14</a>]</span>.</p>
+<p>Moreover, you can insert a bibliography into your page with this syntax:
+The <code class="docutils literal notranslate"><span class="pre">{bibliography}</span></code> directive must be used for all the <code class="docutils literal notranslate"><span class="pre">{cite}</span></code> roles to
+render properly.
+For example, if the references for your book are stored in <code class="docutils literal notranslate"><span class="pre">references.bib</span></code>,
+then the bibliography is inserted with:</p>
+<div class="docutils container" id="id2">
+<dl class="citation">
+<dt class="label" id="id3"><span class="brackets">BHK18</span></dt>
+<dd><p>Gabriel Birzu, Oskar Hallatschek, and Kirill S Korolev. Fluctuations uncover a distinct class of traveling waves. <em>Proceedings of the National Academy of Sciences</em>, 115(16):E3645–E3654, 2018.</p>
+</dd>
+<dt class="label" id="id5"><span class="brackets">Hal11</span></dt>
+<dd><p>Oskar Hallatschek. The noisy edge of traveling waves. <em>Proceedings of the National Academy of Sciences</em>, 108(5):1783–1787, 2011.</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets">HG16</span></dt>
+<dd><p>Oskar Hallatschek and Lukas Geyrhofer. Collective fluctuations in the dynamics of adaptation and other traveling waves. <em>Genetics</em>, 202(3):1201–1227, 2016.</p>
+</dd>
+<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id1">HdHPK14</a></span></dt>
+<dd><p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<span id="document-Traveling-Waves-nb"></span><div class="tex2jax_ignore mathjax_ignore section" id="traveling-waves">
+<h2>Traveling waves<a class="headerlink" href="#traveling-waves" title="Permalink to this headline">#</a></h2>
+<p>Now that we’ve modeled the basic stochastic dynamics of growing populations, we’d like to embed them in space. In the simplest case, we can imagine that each particle is merely diffusing without any active motion in a certain direction.</p>
+<p>Will we observe some collective motion of the entire population?</p>
+<p>Now, the state of the population is describe not only by a single number (the total population size) but by a field, <span class="math notranslate nohighlight">\(c(x,t)\)</span> measuring the number density of the population at position <span class="math notranslate nohighlight">\(x\)</span> and time <span class="math notranslate nohighlight">\(t\)</span>. This makes the problem infinite dimensional and, thus, very challenging in general.</p>
+<p>Still, progress can be made in special cases, for example</p>
+<ul class="simple">
+<li><p>in deterministic limits</p></li>
+<li><p>if growth and death rates are strictly constant</p></li>
+</ul>
+<p>We treat both cases consecutively.</p>
+<div class="section" id="deterministic-analysis">
+<h3>Deterministic Analysis<a class="headerlink" href="#deterministic-analysis" title="Permalink to this headline">#</a></h3>
+<p>We begin by analyzing a deterministic scenario of a traveling wave.
+To this end, we generalize our deterministic branching process to space,</p>
+<div class="math notranslate nohighlight">
+\[
+\partial_t c=D\partial_x^2 c+ (a-b) c
+\]</div>
+<p>If <span class="math notranslate nohighlight">\(r\equiv a-b\)</span> is constant, this equation can be analyzed by substituting <span class="math notranslate nohighlight">\(c(c,t)=\psi(c,t)e^{rt}\)</span>, we obtain</p>
+<div class="math notranslate nohighlight">
+\[
+\partial_t \psi=D\partial_x^2 \psi \;.
+\]</div>
+<p>We have thus obtained a simple diffusion equation without growth. It is straight-forward to show that a widening Gaussian is the solution to a localized initial condition. In terms of the number density, this solution reads</p>
+<div class="math notranslate nohighlight">
+\[
+c(x,t)=e^{r t}e^{\frac{-x^2}{4Dt}} (4\pi Dt)^{-1/2}\;.
+\]</div>
+<p>Although the solution has a well-defined peak, its tails extend to infinity. In any real simulation of discrete particles, there will instead be a most advanced particle.</p>
+<p>We can try to estimate the position of the most advanced particle in an adhoc way by asking: “At what position will the density drop below some threshold density <span class="math notranslate nohighlight">\(\epsilon\)</span>?” This should occur for <span class="math notranslate nohighlight">\(x&gt;\ell(t)\)</span> where <span class="math notranslate nohighlight">\(c(\ell(t),t)=\epsilon\)</span>, yielding <span class="math notranslate nohighlight">\(\ell(t)\sim v_F t\)</span> where <span class="math notranslate nohighlight">\(v_F\)</span> is the so-called Fisher-Kolmogorov velocity,</p>
+<div class="math notranslate nohighlight">
+\[
+v_F=2\sqrt{Ds}\;.
+\]</div>
+</div>
+<div class="section" id="finite-population-densities">
+<h3>Finite population densities<a class="headerlink" href="#finite-population-densities" title="Permalink to this headline">#</a></h3>
+<p>By estimating the most advanced individual, we have just analyzed our first effect of the discreteness of the particles. Our answer is even asymptotically correct, as it is based on the correct mean number density for fixed birth and death rates and the relative uncertainty vanishes on long times. The relative simplicity of our analysis stems from the linearity of the underlying equation of motion.</p>
+<p>Once, we introduce non-linearities to limit the population size, a deterministic analysis becomes not only adhoc but asymptotically incorrect. Number fluctuations modify the behavior of dynamic processes in interesting (singular) ways, as we will see.</p>
+<p>The simplest way to introduce a finite population is to introduce a quadratic non-linearity that induces saturation at a finite number density, called carrying capacity <span class="math notranslate nohighlight">\(K\)</span>,</p>
+<div class="math notranslate nohighlight" id="equation-fkpp-eq">
+<span class="eqno">(6)<a class="headerlink" href="#equation-fkpp-eq" title="Permalink to this equation">#</a></span>\[
+\partial_t c=D\partial_x^2 c+r c \left(1-\frac cK\right) \;.
+\]</div>
+<p>After some relaxation time, we expect the population to settle into a steadily moving wave train. In the co-moving frame, we find</p>
+<div class="math notranslate nohighlight">
+\[
+0=D\partial_x^2 c+v \partial_x c + r c \left(1-\frac cK\right) \;.
+\]</div>
+<p>In the tip of the wave, where <span class="math notranslate nohighlight">\(c\ll K\)</span>, one can focus on the linearized version of this equation and finds an exponentially decaying density profile <span class="math notranslate nohighlight">\(c\sim e^{-k x}\)</span> where <span class="math notranslate nohighlight">\(k\)</span> satisfies <span class="math notranslate nohighlight">\(D k^2-v k+r=0\)</span>. This quadratic equation has a solution with positive <span class="math notranslate nohighlight">\(k\)</span> only if the speed is larger or equal to the Fisher velocity <span class="math notranslate nohighlight">\(v\geq v_F=2\sqrt{D r}\)</span>. Which velocity is realized however?</p>
+<p>That velocity selection problem requires some thought in general, but has an easy answer for localized initial conditions. In that case, we already know that the FKPP equation without non-linearity, which maps to the mean branching random walk, has a front that advances at speed equal to <span class="math notranslate nohighlight">\(v_F\)</span>. Obviously, adding a negative term to the right side cannot <em>accelerate</em> the wave. Therefore, we can conclude that even the above non-linear waves travel, asymptotically, at the speed of the classical Fisher wave speed. Indeed, a more careful analysis shows that any initial condition with compact support leads to waves with <span class="math notranslate nohighlight">\(v=v_F\)</span> and to an asymptotic density profile <span class="math notranslate nohighlight">\(c\sim e^{v x/2 D}\)</span>.</p>
+<div class="figure align-default" id="rolling-balls">
+<a class="reference internal image-reference" href="_images/FKPP-rolling-ball-analogy.jpg"><img alt="_images/FKPP-rolling-ball-analogy.jpg" src="_images/FKPP-rolling-ball-analogy.jpg" style="height: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Rolling ball analogy for the steady state equation describing the FKPP wave profile</span><a class="headerlink" href="#rolling-balls" title="Permalink to this image">#</a></p>
+</div>
+<div class="admonition-different-types-of-traveling-waves admonition">
+<p class="admonition-title">Different types of traveling waves</p>
+<p>Waves are called pulled if the most advanced individuals have the largest growth rate. The ball analogy for those waves looks as in Fig. X a with a ball running down a hill onto a plane. Pushed and, more recently discovered, semi-pushed<span id="id1">[<a class="reference internal" href="#id6" title="Gabriel Birzu, Oskar Hallatschek, and Kirill S Korolev. Fluctuations uncover a distinct class of traveling waves. Proceedings of the National Academy of Sciences, 115(16):E3645–E3654, 2018.">BHK18</a>]</span> waves have reduced growth rates in the wave tip. The corresponding ball analogy is sketched in Fig. Xb, where a ball runs from one peak through a valley to a lower laying hill.</p>
+</div>
+</div>
+<div class="section" id="effects-of-discreteness">
+<h3>Effects of discreteness<a class="headerlink" href="#effects-of-discreteness" title="Permalink to this headline">#</a></h3>
+<p>Our discussion of traveling waves ignored the fact that individuals are discrete. An exponentially decaying density can only make sense in an average sense when the density drops below one and that then implies the existence of fluctuations. It turns out these fluctuations crucial influence the behavior of waves.</p>
+<p>One can show that the correct noisy version of the above dynamics requires to leading order on the right hand side of the FKPP equation a noise term of the form <span class="math notranslate nohighlight">\( \eta(x,t)\sqrt{c}\)</span> where the <span class="math notranslate nohighlight">\(\eta\)</span> is uncorrelated white noise, <span class="math notranslate nohighlight">\(\eta(x,t)\eta(x',t')=\delta(x-x')\delta(t-t')\)</span>.</p>
+<p>The FKPP equation <a class="reference internal" href="#equation-fkpp-eq">(6)</a> amounts to approximating <span class="math notranslate nohighlight">\(\langle c^2\rangle=\langle c\rangle^2\)</span>. It turns out that this mean-field approximation is problematic. The velocity is reduced by a singular correction that cannot be obtained through perturbation analysis. More serious are the consequences for models of adaptation, which do not even have a finite wave speed in the mean-field approximation, and for the genealogical structures generated by these waves.</p>
+<p>A lot of work has been done to implement the consequences of discreteness, most of them being adhoc at some level. Below I present an adhoc recipe that has given correct answers to leading order for many cases.</p>
+<p>This method requires us to first extend our understanding of branching processes to space and introduce the concept of gene surfing.</p>
+<div class="section" id="simple-code-to-simulate-fkpp-waves">
+<h4>Simple code to simulate FKPP waves<a class="headerlink" href="#simple-code-to-simulate-fkpp-waves" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Constants</span>
+<span class="n">D</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># Diffusion coefficient</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># Fisher-Kolmogorov parameter</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mf">30.0</span>  <span class="c1"># Length of the domain</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mf">10.0</span>  <span class="c1"># Simulation time</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># Spatial step size</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1"># Time step size</span>
+
+<span class="n">sigma0</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># initial width</span>
+<span class="n">N0</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># initial cummulative value</span>
+
+<span class="c1"># Calculate the number of spatial and temporal steps</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">L</span> <span class="o">/</span> <span class="n">dx</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">M</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">T</span> <span class="o">/</span> <span class="n">dt</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="c1"># Initialize the solution matrix</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+
+<span class="c1"># Set the initial condition</span>
+<span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">N0</span><span class="o">/</span><span class="p">(</span><span class="n">sigma0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span> <span class="o">-</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sigma0</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+                      
+<span class="c1">#u[0, :] = np.sin(np.pi * np.linspace(0, L, N) / L)</span>
+
+<span class="c1"># Apply the finite difference method</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">u</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="n">D</span> <span class="o">*</span> <span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">u</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span>
+            <span class="n">a</span> <span class="o">*</span> <span class="n">u</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">])</span>
+        <span class="p">)</span>
+
+<span class="c1"># Plot the results</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/44196da2071ad9c1b48865390effd8fd99db8f0e0a1f954350feeb3b016d0811.png" src="_images/44196da2071ad9c1b48865390effd8fd99db8f0e0a1f954350feeb3b016d0811.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Parameters</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># Length of the lattice</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">500</span>  <span class="c1"># Simulation time</span>
+<span class="n">D</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># Diffusion coefficient</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># net growth rate per particle</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># carrying capacity</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># Time step size</span>
+
+<span class="c1"># Initialize the lattice</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1"># Set initial conditions</span>
+<span class="n">midpoint</span> <span class="o">=</span> <span class="n">L</span> <span class="o">//</span> <span class="mi">2</span>
+<span class="n">lattice</span><span class="p">[</span><span class="n">midpoint</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1"># Simulation</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+    <span class="n">new_lattice</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">lattice</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+        <span class="c1"># Calculate diffusion</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="n">lattice</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">lattice</span><span class="p">[</span><span class="n">L</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="n">lattice</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">L</span><span class="o">-</span><span class="mi">1</span> <span class="k">else</span> <span class="n">lattice</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">diffusion</span> <span class="o">=</span> <span class="n">D</span> <span class="o">*</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">lattice</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        
+        <span class="c1"># Calculate birth and death</span>
+        <span class="n">netgrowth</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">lattice</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">lattice</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">K</span><span class="p">)</span>
+        
+        <span class="c1"># Update particle count</span>
+        <span class="n">new_lattice</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">diffusion</span> <span class="o">+</span> <span class="n">netgrowth</span>
+    
+    <span class="c1"># Compute new number of individuals from Poisson distribution</span>
+    <span class="n">new_lattice</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">new_lattice</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">heaviside</span><span class="p">(</span><span class="n">new_lattice</span> <span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    
+    <span class="c1"># Update lattice</span>
+    <span class="n">lattice</span> <span class="o">=</span> <span class="n">new_lattice</span>
+
+<span class="c1"># Plot the results</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">lattice</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Position&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Population&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Birth-Death-Diffusion Simulation&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+    <span class="c1"># Plot the results</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">lattice</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Position&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Population&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Traveling Wave at Time t = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Create the slider widget</span>
+<span class="n">time_slider</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create the interactive plot</span>
+<span class="n">interactive_plot</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">interactive</span><span class="p">(</span><span class="n">update_plot</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">time_slider</span><span class="p">)</span>
+
+<span class="c1"># Display the interactive plot</span>
+<span class="n">display</span><span class="p">(</span><span class="n">interactive_plot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">50</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+    <span class="o">^</span>
+<span class="ne">IndentationError</span>: unexpected indent
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+<span class="c1"># Parameters</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># Length of the lattice</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">500</span>  <span class="c1"># Simulation time</span>
+<span class="n">D</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># Diffusion coefficient</span>
+<span class="n">birth_rate</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># Birth rate per particle</span>
+<span class="n">death_rate</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># Death rate per particle</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># Time step size</span>
+
+<span class="c1"># Initialize the lattice</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1"># Set initial conditions</span>
+<span class="n">midpoint</span> <span class="o">=</span> <span class="n">L</span> <span class="o">//</span> <span class="mi">2</span>
+<span class="n">lattice</span><span class="p">[</span><span class="n">midpoint</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1"># Function to update the plot</span>
+<span class="k">def</span> <span class="nf">update_plot</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="c1"># Simulation</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="n">dt</span><span class="p">)):</span>
+        <span class="n">new_lattice</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">lattice</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+            <span class="c1"># Calculate diffusion</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">lattice</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">lattice</span><span class="p">[</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">lattice</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">L</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">lattice</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">diffusion</span> <span class="o">=</span> <span class="n">D</span> <span class="o">*</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">lattice</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+            <span class="c1"># Calculate birth and death</span>
+            <span class="n">birth</span> <span class="o">=</span> <span class="n">birth_rate</span> <span class="o">*</span> <span class="n">lattice</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">death</span> <span class="o">=</span> <span class="n">death_rate</span> <span class="o">*</span> <span class="n">lattice</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+            <span class="c1"># Update particle count</span>
+            <span class="n">new_lattice</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">diffusion</span> <span class="o">+</span> <span class="n">birth</span> <span class="o">-</span> <span class="n">death</span><span class="p">)</span>
+
+        <span class="c1"># Compute new number of individuals from Poisson distribution</span>
+        <span class="n">new_lattice</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">new_lattice</span><span class="p">)</span>
+
+        <span class="c1"># Update lattice</span>
+        <span class="n">lattice</span> <span class="o">=</span> <span class="n">new_lattice</span>
+
+    <span class="c1"># Plot the results</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">lattice</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Position&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Population&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Traveling Wave at Time t = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Create the slider widget</span>
+<span class="n">time_slider</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create the interactive plot</span>
+<span class="n">interactive_plot</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">interactive</span><span class="p">(</span><span class="n">update_plot</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">time_slider</span><span class="p">)</span>
+
+<span class="c1"># Display the interactive plot</span>
+<span class="n">display</span><span class="p">(</span><span class="n">interactive_plot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">UnboundLocalError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">File ~/anaconda3/envs/jb/lib/python3.9/site-packages/ipywidgets/widgets/interaction.py:257,</span> in <span class="ni">interactive.update</span><span class="nt">(self, *args)</span>
+<span class="g g-Whitespace">    </span><span class="mi">255</span>     <span class="n">value</span> <span class="o">=</span> <span class="n">widget</span><span class="o">.</span><span class="n">get_interact_value</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span>     <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="n">widget</span><span class="o">.</span><span class="n">_kwarg</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+<span class="ne">--&gt; </span><span class="mi">257</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span> <span class="n">show_inline_matplotlib_plots</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">259</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_display</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">Cell In[19], line 47,</span> in <span class="ni">update_plot</span><span class="nt">(t)</span>
+<span class="g g-Whitespace">     </span><span class="mi">45</span> <span class="c1"># Plot the results</span>
+<span class="g g-Whitespace">     </span><span class="mi">46</span> <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">47</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">lattice</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">48</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Position&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">49</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Population&#39;</span><span class="p">)</span>
+
+<span class="ne">UnboundLocalError</span>: local variable &#39;lattice&#39; referenced before assignment
+</pre></div>
+</div>
+</div>
+</div>
+<p>The above code is modified version of what ChatGPT gave me when I asked “write a simple python code to simulate a traveling Fisher Kolmogorov wave”:</p>
+<p>This code uses a finite difference method to solve the Fisher-Kolmogorov equation with diffusion. It initializes a matrix u to store the solution at each time step. The initial condition is set as a sine wave, and then the finite difference method is applied iteratively to calculate the solution at each time step. Finally, the results are plotted using a 3D surface plot.</p>
+<p>Please note that this code is a basic implementation and may not handle certain edge cases or optimizations. You can modify the parameters and experiment with different initial conditions to observe the behavior of the traveling Fisher-Kolmogorov wave.</p>
+</div>
+</div>
+<div class="section" id="gene-surfing">
+<h3>Gene Surfing<a class="headerlink" href="#gene-surfing" title="Permalink to this headline">#</a></h3>
+<p>Taking discreteness into account is difficult in general. Forward in time, a branching process gives rise to a genealogical tree (show figure). Each time a birth event happens, a lineage splits into two, and both lineages have to be followed to describe the downstream dynamics fully probabilistically. That attempt is feasible if birth and death rates are constant but often impossible if they depend on the stochastic dynamics itself.</p>
+<p>In these many-body problems of a branching tree, one can  obtain a simpler single-body problem by taking a retrospective view: Sample one individual at the final time, i.e. a “tip” of the genealogical tree, and follow its lineage backward in time. A lineage traveling backward in time has the advantage that it neither splits nor ends, i.e. we only have to deal the degrees of freedom of just one particle. That can be useful if one knows the field of growth rates and used as a tool to enforce consistency of the dynamics.</p>
+<p>To make this concrete, imagine sampling a particle of the a traveling wave and following it’s lineage backward in time. To describe the ancestral process of said lineage by the probability density <span class="math notranslate nohighlight">\(G(\xi,\tau|x,t)\)</span> that an individual presently, at time t and located at x, has descended from an ancestor that lived at <span class="math notranslate nohighlight">\(\xi\)</span> at the earlier time <span class="math notranslate nohighlight">\(\tau\)</span>. In this context, it is natural to choose time as increasing towards the past, <span class="math notranslate nohighlight">\(\tau&gt;t\)</span>, and to consider <span class="math notranslate nohighlight">\((\xi,\tau)\)</span> and <span class="math notranslate nohighlight">\((x,t)\)</span> as final and initial state of the ancestral trajectory, respectively. With this convention, the distribution G satisfies the initial condition <span class="math notranslate nohighlight">\(G(\xi,\tau|x,t)=\delta(\xi-x)\)</span>.</p>
+<div class="admonition-notation admonition">
+<p class="admonition-title">Notation</p>
+<p>For space-time trajectories, we will use the convention that co-ordinates in greek letters <span class="math notranslate nohighlight">\((\xi,\tau)\)</span> refer to the starting point of the trajectory  and those in roman letters <span class="math notranslate nohighlight">\((x,t)\)</span>  refer to the end point.</p>
+</div>
+<p>Since a lineage cannot branch or end, all that it can do is to move around. If this movement is continuous and memory-less, we obtained a biased diffusion process. To describe this process, we develop a biased diffusion equation for the Greens function <span class="math notranslate nohighlight">\(G\)</span>.</p>
+<p>Since <span class="math notranslate nohighlight">\(G\)</span> is a pdf, it has to satisfy a continuity equation,</p>
+<div class="math notranslate nohighlight">
+\[
+\partial_\tau G=-\partial_\xi j\;,
+\]</div>
+<p>which simply ensures that the lineage is somewhere (conservation of probability). The probability current <span class="math notranslate nohighlight">\(j(\xi,\tau)\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[
+j=-D_*\partial_\xi G+ v_* G \;,
+\]</div>
+<p>where the first term represents unbiased diffusion and the second part a deterministic bias with velocity <span class="math notranslate nohighlight">\(v_*(\xi,\tau)\)</span>.</p>
+<p>We have the mathematical form of the diffusion equation, but what’s the diffusivity and what’s the bias? A simple calculation shows that the diffusivity, <span class="math notranslate nohighlight">\(D_*=D\)</span> is the same as forward in time but that the bias is number density dependent,</p>
+<div class="math notranslate nohighlight">
+\[
+v_*(\xi,\tau)=2 D \partial_\xi\ln[c(\xi,t)]
+\]</div>
+<p>In the co-moving frame, we expect the particle current to vanish</p>
+<div class="math notranslate nohighlight">
+\[
+0=j=-D\partial_\xi G(\xi)+\left[v+2 D \partial_\xi \ln(c)\right] G(\xi)
+\]</div>
+<p>which predicts that the steady state distribution <span class="math notranslate nohighlight">\(G(\xi)\)</span> of the common ancestors is given by</p>
+<div class="math notranslate nohighlight" id="equation-pdf-ancestors">
+<span class="eqno">(7)<a class="headerlink" href="#equation-pdf-ancestors" title="Permalink to this equation">#</a></span>\[
+G\propto c^2 e^{v \xi/D}
+\]</div>
+<p>where the pre-factor is fixed by the normalization condition, <span class="math notranslate nohighlight">\(\int_\xi G=1\)</span>.</p>
+<p>Using the mean-field solution <span class="math notranslate nohighlight">\(c \propto c^{-v \xi/(2D)}\)</span> of the FKPP, one finds that <span class="math notranslate nohighlight">\(G\)</span> should vanish everywhere because it is not normalizable.</p>
+<div class="figure align-default" id="doca">
+<a class="reference internal image-reference" href="_images/Distribution-of-common-ancestors.jpg"><img alt="_images/Distribution-of-common-ancestors.jpg" src="_images/Distribution-of-common-ancestors.jpg" style="height: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Measured bell-shaped distribution <span class="math notranslate nohighlight">\(G_\infty(\xi)\)</span> as function of position <span class="math notranslate nohighlight">\(\xi\)</span> relative to the FKPP wave front (sigmoidal lines) for varying carrying capacities <span class="math notranslate nohighlight">\(N\)</span>.</span><a class="headerlink" href="#doca" title="Permalink to this image">#</a></p>
+</div>
+<p>But simulations of stochastic traveling waves show that this steady state distribution is a bell-like shape in the wave tip, see <a class="reference internal" href="#doca"><span class="std std-numref">Fig. 2</span></a>. Another hint that the mean-field solution to the number density is incorrect, in fact completely off.</p>
+</div>
+<div class="section" id="branching-random-walks">
+<h3>Branching Random Walks<a class="headerlink" href="#branching-random-walks" title="Permalink to this headline">#</a></h3>
+<p>It turns out that a more appropriate approximation to noisy traveling waves can be obtained from taking a particle viewpoint from the beginning.</p>
+<p>One of the most extreme consequences of discreteness is that lineages can go extinct. In fact, when birth and death rates are nearly the same, the probability <span class="math notranslate nohighlight">\(u\)</span> of survival is very low, of order the relative growth rate difference <span class="math notranslate nohighlight">\(s\)</span>. We arrived at this conclusion by deriving and solving a differential equation for the survival probability, which read</p>
+<div class="math notranslate nohighlight">
+\[
+-\partial_\tau u(t|\tau)=s u(t|\tau)- u^2(t|\tau) \;.
+\]</div>
+<p>Generalizing this equation to the case of diffusion and spatially varying growth rates <span class="math notranslate nohighlight">\(s(\xi,\tau)\)</span>, one obtains</p>
+<div class="math notranslate nohighlight" id="equation-u-fkpp">
+<span class="eqno">(9)<a class="headerlink" href="#equation-u-fkpp" title="Permalink to this equation">#</a></span>\[
+-\partial_\tau u (x,t|\xi,\tau)=D\partial_x u^2+s(\xi,\tau) u- u^2 \;.
+\]</div>
+<p>Deriving this equation is a useful exercise, for which one has to retrace the same steps as for the non-spatial equation with the addition that one needs to account for the rates of dispersal. Notice that <a class="reference internal" href="#equation-u-fkpp">(9)</a> has a similar shape as the FKPP equation.</p>
+<p>In the frame co-moving with the wave traveling in the <span class="math notranslate nohighlight">\(-x\)</span> direction backward in time, we have</p>
+<div class="math notranslate nohighlight" id="equation-u-fkpp">
+<span class="eqno">(9)<a class="headerlink" href="#equation-u-fkpp" title="Permalink to this equation">#</a></span>\[
+ 0 =D\partial_x u^2+ v \partial_x u+s(x) u- u^2 \;,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(s(x)=1-c(x)\)</span> is given in terms of the density. To close this equation, we need an expression for the number density <span class="math notranslate nohighlight">\(c\)</span> in terms of the survival probability <span class="math notranslate nohighlight">\(u\)</span>. Such a connection is provided by equation <a class="reference internal" href="#equation-pdf-ancestors">(7)</a> for the distribution of common ancestors, once we recognize that</p>
+<div class="math notranslate nohighlight" id="equation-g-u-c">
+<span class="eqno">(10)<a class="headerlink" href="#equation-g-u-c" title="Permalink to this equation">#</a></span>\[
+G(x,\infty|\xi,\tau)=u(\xi,\tau) c(\xi,\tau) \;.
+\]</div>
+<p>To see <a class="reference internal" href="#equation-g-u-c">(10)</a>, notice that the probability that, at time <span class="math notranslate nohighlight">\(\tau\)</span>, the common ancestor of future generations is at <span class="math notranslate nohighlight">\(\xi\)</span> is the same as the probability that any particle at <span class="math notranslate nohighlight">\(\xi\)</span> is going to survive forever, which is given by <span class="math notranslate nohighlight">\(u c\)</span>.</p>
+<p>Combining Eq.s <a class="reference internal" href="#equation-u-fkpp">(9)</a>, <a class="reference internal" href="#equation-pdf-ancestors">(7)</a> and <a class="reference internal" href="#equation-g-u-c">(10)</a>, we obtain</p>
+<div class="math notranslate nohighlight" id="equation-c-cutoff">
+<span class="eqno">(11)<a class="headerlink" href="#equation-c-cutoff" title="Permalink to this equation">#</a></span>\[
+ 0 =D\partial_x c^2+ v \partial_x c+r c(1-c)- \frac{c^2 e^{v x/D}}{\int_x c^2 e^{v x/D}}\;.
+\]</div>
+<p>The third term on the right-hand side furnishes the major difference to the naive mean-field approach. One might think, at first sight, that this non-linear term can be ignored in the tip of the wave, where the density decays to 0 and <span class="math notranslate nohighlight">\(c^2\ll c\)</span>. But the exponential amplification factor ensures that this factor becomes a leading order term sufficiently far out in the tip of the wave.</p>
+</div>
+<div class="section" id="consequences-of-tip-fluctuations">
+<h3>Consequences of tip fluctuations<a class="headerlink" href="#consequences-of-tip-fluctuations" title="Permalink to this headline">#</a></h3>
+<div class="section" id="fkpp-waves">
+<h4>FKPP waves<a class="headerlink" href="#fkpp-waves" title="Permalink to this headline">#</a></h4>
+<p>Assuming an overall decay <span class="math notranslate nohighlight">\(c \sim N e^{-v x/(2 D)}\)</span>, it is easy to see that the quadratic cut-off term becomes of comparable to the first order terms when <span class="math notranslate nohighlight">\(x \sim \ln(N)\)</span>. We assume that the cutoff term strongly suppresses growth. The linearized equation</p>
+<div class="math notranslate nohighlight" id="equation-fkpp-linear">
+<span class="eqno">(12)<a class="headerlink" href="#equation-fkpp-linear" title="Permalink to this equation">#</a></span>\[
+\partial_t c =D\partial_x^2 c+ v \partial_x c+r c 
+\]</div>
+<p>thus has to be solved between <span class="math notranslate nohighlight">\(x=0\)</span> and <span class="math notranslate nohighlight">\(x=\ln(N)\)</span>. To do this, it is convenient to introduce the variable transform</p>
+<div class="math notranslate nohighlight" id="equation-var-trafo">
+<span class="eqno">(13)<a class="headerlink" href="#equation-var-trafo" title="Permalink to this equation">#</a></span>\[
+c(x,t)=\phi(x,t) e^{-\frac{vx}{2D}}
+\]</div>
+<p>through which <a class="reference internal" href="#equation-fkpp-linear">(12)</a> is transformed into</p>
+<div class="math notranslate nohighlight" id="equation-fkpp-linear-trafo">
+<span class="eqno">(14)<a class="headerlink" href="#equation-fkpp-linear-trafo" title="Permalink to this equation">#</a></span>\[
+\partial_t \phi =D\partial_x^2 \phi+ \left(r-\frac{v^2}{4D} \right) \phi\;,
+\]</div>
+<p>which has a <em>Hermitian</em> operator on the RHS. <a class="reference internal" href="#equation-fkpp-linear-trafo">(14)</a> has the shape of a Schroedinger equation in imaginary time. The non-linearities of the original equation <a class="reference internal" href="#equation-c-cutoff">(11)</a> effectively generate two absorbing boundary conditions for <span class="math notranslate nohighlight">\(\phi(x)\)</span>, one at <span class="math notranslate nohighlight">\(x=O(\ln N)\)</span> and one at <span class="math notranslate nohighlight">\(x=O(1)\)</span>.</p>
+<p>We can solve equation <a class="reference internal" href="#equation-fkpp-linear-trafo">(14)</a> subject to these boundary conditions in terms of normal modes. To ensure a steady state in the co-moving frame, we have to demand that the ground state (lowest mode) has vanishing energy. All higher modes have higher energy, and therefore decay over time. The higher the mode number (the more nodes the eigen function has / the more rapidly it varies in space) the faster its relaxation to 0. Since the growth rate is constant between the two absorbing boundaries, we essentially have the mode spectrum of a particle in a 1D-box, which are cosine modes.</p>
+<p>To fix the wave speed, we focus on the ground state,</p>
+<div class="math notranslate nohighlight">
+\[
+\phi_0(x)=\cos\left(\frac{\pi x}{\ln(N)\sqrt{D/r}}\right)
+\]</div>
+<p>which solves <a class="reference internal" href="#equation-fkpp-linear-trafo">(14)</a> at steady state (<span class="math notranslate nohighlight">\(\partial_t \phi=0\)</span>) if</p>
+<div class="math notranslate nohighlight">
+\[
+0=-r\left(\frac{\pi }{\ln(N)}\right)^2 + \left(r-\frac{v^2}{4D}\right) 
+\]</div>
+<p>implying that</p>
+<div class="math notranslate nohighlight">
+\[
+v = 2\sqrt{D r}\left(1-\frac{\pi^2}{\ln^2 N}\right) \;.
+\]</div>
+<p>So, the cutoff leads to a reduction of the wave speed, which only slowly vanishes as <span class="math notranslate nohighlight">\(\ln N\)</span> goes to infinity. In particular, it cannot be captured by a perturbation theory in the noise strength <span class="math notranslate nohighlight">\(N^{-1}\)</span>.</p>
+<p>The consequences of the cutoff on genealogical processes are even more pronounced. Without going into the details, we merely argue intuitively here. Due to the the second cutoff, lineages are localized on a scale <span class="math notranslate nohighlight">\(\ln N\)</span> and caused to coalesce on a time scale <span class="math notranslate nohighlight">\(T_c\sim \ln^3 N\)</span>, which diverges when <span class="math notranslate nohighlight">\(N\to \infty\)</span>.</p>
+</div>
+</div>
+<div class="section" id="fitness-waves">
+<h3>Fitness waves<a class="headerlink" href="#fitness-waves" title="Permalink to this headline">#</a></h3>
+<p>Traveling waves  not only occur in real space. They are often used to describe how the distribution of a trait, such as growth rate, height, strength etc. across a population shifts over time in response to a changing environment or in response to self-organization. The most classical of these waves is a wave of adaptation, where growth rate, or fitness, shifts towards larger values in response to the occurrence of fitter types (due to mutations) and their take over within the population.</p>
+<p>A simple model to describe this situation is</p>
+<div class="math notranslate nohighlight" id="equation-eq-staircase">
+<span class="eqno">(15)<a class="headerlink" href="#equation-eq-staircase" title="Permalink to this equation">#</a></span>\[
+\partial_t c_n = U \left(c_{n-1}-c_{n}\right)+ s(n-\overline{n})c + \eta \sqrt{c_n} \;,
+\]</div>
+<p>where it is assumed that beneficial mutations  all beneficial mutations have the same fitness effect <span class="math notranslate nohighlight">\(s\)</span> and occur at rate <span class="math notranslate nohighlight">\(U\)</span>. The overline represents the population mean, <span class="math notranslate nohighlight">\(\overline{f_n}\equiv \sum_n c_n f_n\)</span>, so that <span class="math notranslate nohighlight">\(s\overline{n}\)</span> is the mean fitness.</p>
+<p>Two simple arguments constrain the leading order speed of these waves.</p>
+<div class="section" id="adaptation-speed-depends-on-fitness-variance">
+<h4>Adaptation speed depends on fitness variance<a class="headerlink" href="#adaptation-speed-depends-on-fitness-variance" title="Permalink to this headline">#</a></h4>
+<p>Multiplying <a class="reference internal" href="#equation-eq-staircase">(15)</a> with <span class="math notranslate nohighlight">\(s(n-\overline{n})\)</span>, integrating over <span class="math notranslate nohighlight">\(n\)</span> and averaging over the noise yields</p>
+<div class="math notranslate nohighlight">
+\[
+ s \partial_t\overline n(t) = s^2\overline{ (n-\overline{n})^2} \;,
+\]</div>
+<p>i.e. the rate of increase in fitness (LHS) equals the variance in fitness (RHS), or</p>
+<div class="math notranslate nohighlight">
+\[
+v=\sigma^2\;.
+\]</div>
+<p>When R. A. Fisher stumbled over this simple observation, he was apparently so excited that he called it “the fundamental law of natural selection”, although it was soon shown that this equation is neither fundamental nor a law.</p>
+</div>
+<div class="section" id="the-tip-of-the-wave">
+<h4>The tip of the wave<a class="headerlink" href="#the-tip-of-the-wave" title="Permalink to this headline">#</a></h4>
+<p>The density profile in the co-moving frame looks, to a good approximation like a Gaussian. But, because of the discreteness of individuals, this Gaussian has to be cut-off at the fitness value <span class="math notranslate nohighlight">\(q\)</span> of the most fit individuals. This tip of the wave can be estimated from <span class="math notranslate nohighlight">\(e^{-(q s)^2 /(2 \sigma^2)}N\sim 1\)</span> giving us</p>
+<div class="math notranslate nohighlight">
+\[
+q\sim s^{-1}\sqrt{2\sigma^2 \ln N} \;.
+\]</div>
+<p>At the wave tip, we can estimate how long it takes for the next bin to be established, by</p>
+<div class="math notranslate nohighlight">
+\[
+(q+1) s U\int^T dt' \frac{e^{q s t'}}{q s } \sim 1 \;,
+\]</div>
+<p>giving us</p>
+<div class="math notranslate nohighlight">
+\[
+T=\frac{\log{U^{-1}}}{qs}=\frac{\log{U^{-1}}}{\sqrt{2\sigma^2 \ln N}}\;.
+\]</div>
+</div>
+<div class="section" id="self-consistency">
+<h4>Self-consistency<a class="headerlink" href="#self-consistency" title="Permalink to this headline">#</a></h4>
+<p>The wave speed <span class="math notranslate nohighlight">\(v\approx \sigma^2\)</span> to be consistent with the weighting time <span class="math notranslate nohighlight">\(T\)</span>, we have to demand <span class="math notranslate nohighlight">\(s/v\sim T\)</span>, implying</p>
+<div class="math notranslate nohighlight">
+\[
+v\sim 2 s^2 \frac{\ln N }{\ln^2{U}}
+\]</div>
+<p>Note that, for these types of waves, number fluctuations not only cause a correction to the wave speed. Without taking fluctuations into account (<span class="math notranslate nohighlight">\(N\to\infty\)</span>), the wave speed diverges, as it turns out, in finite time.</p>
+</div>
+<div class="section" id="naive-expectation">
+<h4>Naive expectation<a class="headerlink" href="#naive-expectation" title="Permalink to this headline">#</a></h4>
+<p>Yet, the wave speed increases very slowly with population size, namely just logarithmically. According to classical population genetics, one would expect a linear increase, <span class="math notranslate nohighlight">\(v= U N s\)</span>, based on the following computation. New beneficial mutations arise at a rate <span class="math notranslate nohighlight">\(U N\)</span>, and each one of those mutations has a survival probability of <span class="math notranslate nohighlight">\(s\)</span>. What’s wrong with that computation? Respectively, when is this computation correct?</p>
+<div class="admonition-speed-of-adaptation admonition">
+<p class="admonition-title">Speed of adaptation</p>
+<p>The speed of adaptation scales with the log of the population size, much slower than naively expected (based on sequential selection) yet still diverging if number fluctuations are neglected (<span class="math notranslate nohighlight">\(N\to \infty\)</span>).</p>
+</div>
+</div>
+</div>
+<div class="section" id="comment">
+<h3>Comment<a class="headerlink" href="#comment" title="Permalink to this headline">#</a></h3>
+<p>Why do we prefer equation XXX with the emerging cutoff over equation YYY? Both treatments are approximate and uncontrolled by a small parameter.</p>
+<p>The primary reason is the nature of the assumptions being made. The naive mean field theory assumes that growth rates are given by <span class="math notranslate nohighlight">\(r(1-\langle c\rangle)\)</span>. By contrast, the gene-surfing-based theory is based on knowing the mean of the log, <span class="math notranslate nohighlight">\(\langle v_* \rangle = 2 D \partial_x \langle \ln c\rangle\)</span>. The log of a quantity usually fluctuates much less than the quantity itself. The flaw of this intuitive argument is, however, there are realizations where the density drops to 0 at any x, which should dominate the mean of the log. To the rescue comes the fact that we need the quantity <span class="math notranslate nohighlight">\(\partial_x \ln c(x)\)</span> only if a lineage is actually present at <span class="math notranslate nohighlight">\(x\)</span>, so that it can be sampled. Thus, we if we interpret the average <span class="math notranslate nohighlight">\(\langle \ln c(x)\rangle\)</span> as conditional on a lineage being present at <span class="math notranslate nohighlight">\(x\)</span>, a divergence is prevented.</p>
+<p>Well, if such hand waving still leaves you uneasy, there is a way to formulate non-linear noisy waves with a closed first moment<span id="id2">[<a class="reference internal" href="#id8" title="Oskar Hallatschek. The noisy edge of traveling waves. Proceedings of the National Academy of Sciences, 108(5):1783–1787, 2011.">Hal11</a>]</span>, which gives rise to the exact same cutoff as in Eq. XXX except for a factor of <span class="math notranslate nohighlight">\(2\)</span>! This method can be generalized to obtain models that, for any integer <span class="math notranslate nohighlight">\(n\)</span>, have a closed set of <span class="math notranslate nohighlight">\(n\)</span> moment equations<span id="id3">[<a class="reference internal" href="#id9" title="Oskar Hallatschek and Lukas Geyrhofer. Collective fluctuations in the dynamics of adaptation and other traveling waves. Genetics, 202(3):1201–1227, 2016.">HG16</a>]</span>.</p>
+<div class="admonition-different-types-of-traveling-waves admonition">
+<p class="admonition-title">Different types of traveling waves</p>
+<p>Waves are called pulled if the most advanced individuals have the largest growth rate. The ball analogy for those waves looks as in Fig. X a with a ball running down a hill onto a plane. Pushed and, more recently discovered, semi-pushed<span id="id4">[<a class="reference internal" href="#id6" title="Gabriel Birzu, Oskar Hallatschek, and Kirill S Korolev. Fluctuations uncover a distinct class of traveling waves. Proceedings of the National Academy of Sciences, 115(16):E3645–E3654, 2018.">BHK18</a>]</span> waves have reduced growth rates in the wave tip. The corresponding ball analogy is sketched in Fig. Xb, where a ball runs from one peak through a valley to a lower laying hill.</p>
+</div>
+</div>
+<div class="section" id="problems">
+<h3>Problems<a class="headerlink" href="#problems" title="Permalink to this headline">#</a></h3>
+<ol class="arabic simple">
+<li><p>Estimate the speed of a FKPP wave traveling down a narrow corridor of width <span class="math notranslate nohighlight">\(W\)</span>. Assume the walls of the corridor to be absorbing.</p></li>
+<li><p>Use the analogy of traveling waves to imaginary time Schroedinger equation to make predictions about traveling waves that involve standard solutions of quantum mechanics problems you know (using e.g. tunneling, defects, etc.).</p></li>
+<li><p>Simulate an FKPP or fitness wave with finite particle numbers and measure speed and wave diffusion as function of <span class="math notranslate nohighlight">\(\ln N\)</span></p></li>
+<li><p>Extend the theory of branching random walks to offspring distributions with diverging moments.</p></li>
+</ol>
+</div>
+<div class="section" id="appendix">
+<h3>Appendix<a class="headerlink" href="#appendix" title="Permalink to this headline">#</a></h3>
+<p>Suppose a population contains a starred sub-population <span class="math notranslate nohighlight">\(c_*&lt;c\)</span> that is carries a particular mutation. We assume the mutation is completely neutral so that the starred sub-population behaves statistically in exactly the same way than the “wild type” population that does not carry the mutation. What is the dynamics of the labeled population and, more over, what is the chance that on long times the labeled population goes to fixation?</p>
+<div class="math notranslate nohighlight">
+\[
+\partial_t c_*=D\partial_x^2 c_* +r(x,t) c_*
+\]</div>
+<p>Consider a traveling wave as above, and imagine it is decomposed into two sub-populations</p>
+<p>It is interesting to ask what is the survival probability of a particle in the co-moving frame of a traveling wave?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># allow TeX</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;text.usetex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">tmax</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">tmax</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">s</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">s</span><span class="o">*</span><span class="n">t</span><span class="p">))</span> 
+
+<span class="c1"># Add title and axis names</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Time-dependent survival probability for selective advantage $s = 0.1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t- \tau $&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u(t-\tau)$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">s</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span> <span class="mi">0</span> <span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">tmax</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3c0824d9dc4b00a1c0d067cef85b06c429865632dc0413ac8d9470cfe8de00db.png" src="_images/3c0824d9dc4b00a1c0d067cef85b06c429865632dc0413ac8d9470cfe8de00db.png" />
+</div>
+</div>
+<p>First notice that we have a special solution <span class="math notranslate nohighlight">\(G_x^\infty\equiv G_x(t-\tau\to\infty)=(1-s)\)</span>, which simply corresponds to the fact that with probability <span class="math notranslate nohighlight">\((1-s)\)</span> the process goes extinct (<span class="math notranslate nohighlight">\(N(t)=0\)</span>).</p>
+<p>Substituting <span class="math notranslate nohighlight">\(G_x(t)=G_x^\infty+g_x(t)\)</span>, we have to solve the homogeneous equation</p>
+<div class="math notranslate nohighlight">
+\[
+-\partial_\tau g_x = -s g_x + g_x^2
+\]</div>
+<p>subject to final condition <span class="math notranslate nohighlight">\(x=G_x(t)=g_x(t)+1-s\)</span>, i.e., <span class="math notranslate nohighlight">\(g_x(t)=s+x-1\)</span>, and the long-time limit <span class="math notranslate nohighlight">\(g_x(-\infty)=0\)</span>.</p>
+<p>This logistic differential equation can be solved for <span class="math notranslate nohighlight">\(x\leq 1\)</span> (indicating the radius of convergence) as above, yielding</p>
+<div class="math notranslate nohighlight">
+\[
+G_x(t) = 1-s+\frac{s}{1+e^{s(t-\tau)}\frac{1-x}{s+x-1}}\;.
+\]</div>
+<p>A power series expansion returns the sought after abundance distribution, which for <span class="math notranslate nohighlight">\(\tau=0\)</span> is given by</p>
+<div class="math notranslate nohighlight" id="equation-abundance-pdf">
+<span class="eqno">(16)<a class="headerlink" href="#equation-abundance-pdf" title="Permalink to this equation">#</a></span>\[\begin{split}
+    p_n(t)=\left\{\begin{array}{cc}
+  &amp; 
+\begin{array}{cc}
+ s^2 e^{s t} \left(e^{s t}-1\right)^{n-1} \left(e^{s t}+s-1\right)^{-n-1} &amp; n\geq 1 \\
+ \frac{(1-s) \left(e^{s t}-1\right)}{e^{s t}+s-1} &amp; n=0 \\
+\end{array}
+ \\
+\end{array}\right.
+\end{split}\]</div>
+<p>Notice that <span class="math notranslate nohighlight">\(p_0(t)=1-u(t)\)</span> as expected.</p>
+<p>Since the distribution is quite broad, one would like to know some characteristic features. The mean is given by</p>
+<div class="math notranslate nohighlight" id="equation-mean-abundance">
+<span class="eqno">(18)<a class="headerlink" href="#equation-mean-abundance" title="Permalink to this equation">#</a></span>\[
+    \langle N(t) \rangle =\partial_x|_{x=1} G_x(t)=e^{st}
+\]</div>
+<p>which again is a sanity check.</p>
+<p>But, more interesting, is the mean given survival,</p>
+<div class="math notranslate nohighlight" id="equation-mean-abundance">
+<span class="eqno">(18)<a class="headerlink" href="#equation-mean-abundance" title="Permalink to this equation">#</a></span>\[
+    \langle N(t)|N(t)\geq1 \rangle =\frac{e^{st}}{u(t)}=1+\frac{e^{s t}-1}{s}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># allow TeX</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;text.usetex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">tmax</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">tmax</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">s</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">s</span> 
+
+<span class="c1"># Add title and axis names</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Growth conditional on survival for selective advantage $s = 0.1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t $&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\langle N(t)|N(t)\geq1 \rangle $&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span> <span class="mi">0</span> <span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">tmax</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/20869cfe15ca2126d0cd87291fb2077bf6efae46742ca8ac491c031004c5f883.png" src="_images/20869cfe15ca2126d0cd87291fb2077bf6efae46742ca8ac491c031004c5f883.png" />
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Given survival, exponential growth kicks in not until <span class="math notranslate nohighlight">\(N(t)\approx s^{-1}\)</span></p>
+</div>
+</div>
+<div class="section" id="citations">
+<h3>Citations<a class="headerlink" href="#citations" title="Permalink to this headline">#</a></h3>
+<div class="docutils container" id="id5">
+<dl class="citation">
+<dt class="label" id="id6"><span class="brackets">BHK18</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id4">2</a>)</span></dt>
+<dd><p>Gabriel Birzu, Oskar Hallatschek, and Kirill S Korolev. Fluctuations uncover a distinct class of traveling waves. <em>Proceedings of the National Academy of Sciences</em>, 115(16):E3645–E3654, 2018.</p>
+</dd>
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id2">Hal11</a></span></dt>
+<dd><p>Oskar Hallatschek. The noisy edge of traveling waves. <em>Proceedings of the National Academy of Sciences</em>, 108(5):1783–1787, 2011.</p>
+</dd>
+<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id3">HG16</a></span></dt>
+<dd><p>Oskar Hallatschek and Lukas Geyrhofer. Collective fluctuations in the dynamics of adaptation and other traveling waves. <em>Genetics</em>, 202(3):1201–1227, 2016.</p>
+</dd>
+<dt class="label" id="id10"><span class="brackets">HdHPK14</span></dt>
+<dd><p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<span id="document-Soft PAM I"></span><div class="tex2jax_ignore mathjax_ignore section" id="markdown-files">
+<h2>Markdown Files<a class="headerlink" href="#markdown-files" title="Permalink to this headline">#</a></h2>
+<p>Whether you write your book’s content in Jupyter Notebooks (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) or
+in regular markdown files (<code class="docutils literal notranslate"><span class="pre">.md</span></code>), you’ll write in the same flavor of markdown
+called <strong>MyST Markdown</strong>.
+This is a simple file to help you get started and show off some syntax.</p>
+<div class="section" id="what-is-myst">
+<h3>What is MyST?<a class="headerlink" href="#what-is-myst" title="Permalink to this headline">#</a></h3>
+<p>MyST stands for “Markedly Structured Text”. It
+is a slight variation on a flavor of markdown called “CommonMark” markdown,
+with small syntax extensions to allow you to write <strong>roles</strong> and <strong>directives</strong>
+in the Sphinx ecosystem.</p>
+<p>For more about MyST, see <a class="reference external" href="https://jupyterbook.org/content/myst.html">the MyST Markdown Overview</a>.</p>
+</div>
+<div class="section" id="sample-roles-and-directives">
+<h3>Sample Roles and Directives<a class="headerlink" href="#sample-roles-and-directives" title="Permalink to this headline">#</a></h3>
+<p>Roles and directives are two of the most powerful tools in Jupyter Book. They
+are kind of like functions, but written in a markup language. They both
+serve a similar purpose, but <strong>roles are written in one line</strong>, whereas
+<strong>directives span many lines</strong>. They both accept different kinds of inputs,
+and what they do with those inputs depends on the specific role or directive
+that is being called.</p>
+<p>Here is a “note” directive:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Here is a note</p>
+</div>
+<p>It will be rendered in a special box when you build your book.</p>
+<p>Here is an inline directive to refer to a document: <span class="xref std std-doc">markdown-notebooks</span>.</p>
+</div>
+<div class="section" id="citations">
+<h3>Citations<a class="headerlink" href="#citations" title="Permalink to this headline">#</a></h3>
+<p>You can also cite references that are stored in a <code class="docutils literal notranslate"><span class="pre">bibtex</span></code> file. For example,
+the following syntax: <code class="docutils literal notranslate"><span class="pre">{cite}`holdgraf_evidence_2014`</span></code> will render like
+this: <span id="id1">[<a class="reference internal" href="intro.html#id10" title="Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In International Conference on Cognitive Neuroscience. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.">HdHPK14</a>]</span>.</p>
+<p>Moreover, you can insert a bibliography into your page with this syntax:
+The <code class="docutils literal notranslate"><span class="pre">{bibliography}</span></code> directive must be used for all the <code class="docutils literal notranslate"><span class="pre">{cite}</span></code> roles to
+render properly.
+For example, if the references for your book are stored in <code class="docutils literal notranslate"><span class="pre">references.bib</span></code>,
+then the bibliography is inserted with:</p>
+<div class="docutils container" id="id2">
+<dl class="citation">
+<dt class="label" id="id3"><span class="brackets">BHK18</span></dt>
+<dd><p>Gabriel Birzu, Oskar Hallatschek, and Kirill S Korolev. Fluctuations uncover a distinct class of traveling waves. <em>Proceedings of the National Academy of Sciences</em>, 115(16):E3645–E3654, 2018.</p>
+</dd>
+<dt class="label" id="id5"><span class="brackets">Hal11</span></dt>
+<dd><p>Oskar Hallatschek. The noisy edge of traveling waves. <em>Proceedings of the National Academy of Sciences</em>, 108(5):1783–1787, 2011.</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets">HG16</span></dt>
+<dd><p>Oskar Hallatschek and Lukas Geyrhofer. Collective fluctuations in the dynamics of adaptation and other traveling waves. <em>Genetics</em>, 202(3):1201–1227, 2016.</p>
+</dd>
+<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id1">HdHPK14</a></span></dt>
+<dd><p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="learn-more">
+<h3>Learn more<a class="headerlink" href="#learn-more" title="Permalink to this headline">#</a></h3>
+<p>This is just a simple starter to get you started.
+You can learn a lot more at <a class="reference external" href="https://jupyterbook.org">jupyterbook.org</a>.</p>
+</div>
+</div>
+<span id="document-Soft PAM II"></span><div class="tex2jax_ignore mathjax_ignore section" id="markdown-files">
+<h2>Markdown Files<a class="headerlink" href="#markdown-files" title="Permalink to this headline">#</a></h2>
+<p>Whether you write your book’s content in Jupyter Notebooks (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) or
+in regular markdown files (<code class="docutils literal notranslate"><span class="pre">.md</span></code>), you’ll write in the same flavor of markdown
+called <strong>MyST Markdown</strong>.
+This is a simple file to help you get started and show off some syntax.</p>
+<div class="section" id="what-is-myst">
+<h3>What is MyST?<a class="headerlink" href="#what-is-myst" title="Permalink to this headline">#</a></h3>
+<p>MyST stands for “Markedly Structured Text”. It
+is a slight variation on a flavor of markdown called “CommonMark” markdown,
+with small syntax extensions to allow you to write <strong>roles</strong> and <strong>directives</strong>
+in the Sphinx ecosystem.</p>
+<p>For more about MyST, see <a class="reference external" href="https://jupyterbook.org/content/myst.html">the MyST Markdown Overview</a>.</p>
+</div>
+<div class="section" id="sample-roles-and-directives">
+<h3>Sample Roles and Directives<a class="headerlink" href="#sample-roles-and-directives" title="Permalink to this headline">#</a></h3>
+<p>Roles and directives are two of the most powerful tools in Jupyter Book. They
+are kind of like functions, but written in a markup language. They both
+serve a similar purpose, but <strong>roles are written in one line</strong>, whereas
+<strong>directives span many lines</strong>. They both accept different kinds of inputs,
+and what they do with those inputs depends on the specific role or directive
+that is being called.</p>
+<p>Here is a “note” directive:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Here is a note</p>
+</div>
+<p>It will be rendered in a special box when you build your book.</p>
+<p>Here is an inline directive to refer to a document: <span class="xref std std-doc">markdown-notebooks</span>.</p>
+</div>
+<div class="section" id="citations">
+<h3>Citations<a class="headerlink" href="#citations" title="Permalink to this headline">#</a></h3>
+<p>You can also cite references that are stored in a <code class="docutils literal notranslate"><span class="pre">bibtex</span></code> file. For example,
+the following syntax: <code class="docutils literal notranslate"><span class="pre">{cite}`holdgraf_evidence_2014`</span></code> will render like
+this: <span id="id1">[<a class="reference internal" href="intro.html#id10" title="Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In International Conference on Cognitive Neuroscience. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.">HdHPK14</a>]</span>.</p>
+<p>Moreover, you can insert a bibliography into your page with this syntax:
+The <code class="docutils literal notranslate"><span class="pre">{bibliography}</span></code> directive must be used for all the <code class="docutils literal notranslate"><span class="pre">{cite}</span></code> roles to
+render properly.
+For example, if the references for your book are stored in <code class="docutils literal notranslate"><span class="pre">references.bib</span></code>,
+then the bibliography is inserted with:</p>
+<div class="docutils container" id="id2">
+<dl class="citation">
+<dt class="label" id="id3"><span class="brackets">BHK18</span></dt>
+<dd><p>Gabriel Birzu, Oskar Hallatschek, and Kirill S Korolev. Fluctuations uncover a distinct class of traveling waves. <em>Proceedings of the National Academy of Sciences</em>, 115(16):E3645–E3654, 2018.</p>
+</dd>
+<dt class="label" id="id5"><span class="brackets">Hal11</span></dt>
+<dd><p>Oskar Hallatschek. The noisy edge of traveling waves. <em>Proceedings of the National Academy of Sciences</em>, 108(5):1783–1787, 2011.</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets">HG16</span></dt>
+<dd><p>Oskar Hallatschek and Lukas Geyrhofer. Collective fluctuations in the dynamics of adaptation and other traveling waves. <em>Genetics</em>, 202(3):1201–1227, 2016.</p>
+</dd>
+<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id1">HdHPK14</a></span></dt>
+<dd><p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="learn-more">
+<h3>Learn more<a class="headerlink" href="#learn-more" title="Permalink to this headline">#</a></h3>
+<p>This is just a simple starter to get you started.
+You can learn a lot more at <a class="reference external" href="https://jupyterbook.org">jupyterbook.org</a>.</p>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toctree-l1 toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="intro.html#document-Branching-processes-nb">Branching Processes</a></li>
+<li class="toctree-l1 toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="intro.html#document-Traveling-Waves-nb">Traveling waves</a></li>
+<li class="toctree-l1 toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="intro.html#document-Soft PAM I">Markdown Files</a></li>
+<li class="toctree-l1 toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="intro.html#document-Soft PAM II">Markdown Files</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Oskar Hallatschek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
