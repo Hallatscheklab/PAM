@@ -1,0 +1,91 @@
+Traceback (most recent call last):
+  File "/Users/oskarhallatschek/anaconda3/envs/jb/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/oskarhallatschek/anaconda3/envs/jb/lib/python3.9/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/oskarhallatschek/anaconda3/envs/jb/lib/python3.9/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+  File "/Users/oskarhallatschek/anaconda3/envs/jb/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "/Users/oskarhallatschek/anaconda3/envs/jb/lib/python3.9/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/Users/oskarhallatschek/anaconda3/envs/jb/lib/python3.9/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/oskarhallatschek/anaconda3/envs/jb/lib/python3.9/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+L = 100  # Length of the lattice
+T = 500  # Simulation time
+D = 0.1  # Diffusion coefficient
+r = 0.1  # net growth rate per particle
+K = 100 # carrying capacity
+dt = 0.1  # Time step size
+
+# Initialize the lattice
+lattice = np.zeros(L, dtype=int)
+
+# Set initial conditions
+midpoint = L // 2
+lattice[midpoint] = 1000
+
+# Simulation
+for t in range(T):
+    new_lattice = np.copy(lattice)
+    for i in range(L):
+        # Calculate diffusion
+        left = lattice[i-1] if i > 0 else lattice[L-1]
+        right = lattice[i+1] if i < L-1 else lattice[0]
+        diffusion = D * (left + right - 2 * lattice[i])
+        
+        # Calculate birth and death
+        netgrowth = r * lattice[i] * (1-lattice[i] / K)
+        
+        # Update particle count
+        new_lattice[i] += diffusion + netgrowth
+    
+    # Compute new number of individuals from Poisson distribution
+    new_lattice = np.random.poisson(new_lattice * np.heaviside(new_lattice , 0))
+    
+    # Update lattice
+    lattice = new_lattice
+
+# Plot the results
+x = np.arange(L)
+plt.plot(x, lattice)
+plt.xlabel('Position')
+plt.ylabel('Population')
+plt.title('Birth-Death-Diffusion Simulation')
+plt.show()
+
+
+    # Plot the results
+    x = np.arange(L)
+    plt.plot(x, lattice)
+    plt.xlabel('Position')
+    plt.ylabel('Population')
+    plt.title('Traveling Wave at Time t = {}'.format(t))
+    plt.show()
+
+# Create the slider widget
+time_slider = widgets.FloatSlider(value=0.0, min=0.0, max=T, step=dt, description='Time')
+
+# Create the interactive plot
+interactive_plot = widgets.interactive(update_plot, t=time_slider)
+
+# Display the interactive plot
+display(interactive_plot)
+
+------------------
+
+
+[0;36m  Cell [0;32mIn[2], line 50[0;36m[0m
+[0;31m    x = np.arange(L)[0m
+[0m    ^[0m
+[0;31mIndentationError[0m[0;31m:[0m unexpected indent
+
+
