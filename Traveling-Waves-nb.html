@@ -809,12 +809,12 @@ G(x,\infty|\xi,\tau)=u(\xi,\tau) c(\xi,\tau) \;.
 <h2>Consequences of tip fluctuations<a class="headerlink" href="#consequences-of-tip-fluctuations" title="Permalink to this headline">#</a></h2>
 <div class="section" id="fkpp-waves">
 <h3>FKPP waves<a class="headerlink" href="#fkpp-waves" title="Permalink to this headline">#</a></h3>
-<p>Assuming an overall decay <span class="math notranslate nohighlight">\(c \sim N e^{-v x/(2 D)}\)</span>, it is easy to see that the quadratic cut-off term becomes of comparable to the first order terms when <span class="math notranslate nohighlight">\(x \sim \ln(N)\)</span>. We assume that the cutoff term strongly suppresses growth. The linearized equation</p>
+<p>Assuming an overall decay <span class="math notranslate nohighlight">\(c \sim N e^{-v x/(2 D)}\)</span>, it is easy to see that the quadratic cut-off term becomes of comparable to the first order terms when <span class="math notranslate nohighlight">\(x_c \sim \ln(N)\)</span>. For <span class="math notranslate nohighlight">\(x&gt;x_c\)</span>, the density decays faster, <span class="math notranslate nohighlight">\(c\sim e^{-v x/D}\)</span>, just as if there is no growth beyond <span class="math notranslate nohighlight">\(x_c\)</span>. I.e. the leading order effect of the fluctuation-induced term is to introduce a growth cutoff at <span class="math notranslate nohighlight">\(x_c\)</span>. Therefore, the linearized equation</p>
 <div class="math notranslate nohighlight" id="equation-fkpp-linear">
 <span class="eqno">(12)<a class="headerlink" href="#equation-fkpp-linear" title="Permalink to this equation">#</a></span>\[
 \partial_t c =D\partial_x^2 c+ v \partial_x c+r c 
 \]</div>
-<p>thus has to be solved between <span class="math notranslate nohighlight">\(x=0\)</span> and <span class="math notranslate nohighlight">\(x=\ln(N)\)</span>. To do this, it is convenient to introduce the variable transform</p>
+<p>has to be solved between <span class="math notranslate nohighlight">\(x=0\)</span> and <span class="math notranslate nohighlight">\(x=\ln(N)\)</span>. To do this, it is convenient to introduce the variable transform</p>
 <div class="math notranslate nohighlight" id="equation-var-trafo">
 <span class="eqno">(13)<a class="headerlink" href="#equation-var-trafo" title="Permalink to this equation">#</a></span>\[
 c(x,t)=\phi(x,t) e^{-\frac{vx}{2D}}
@@ -829,7 +829,7 @@ c(x,t)=\phi(x,t) e^{-\frac{vx}{2D}}
 <p>To fix the wave speed, we focus on the ground state,</p>
 <div class="math notranslate nohighlight">
 \[
-\phi_0(x)=\cos\left(\frac{\pi x}{\ln(N)\sqrt{D/r}}\right)
+\phi_0(x)\sim \cos\left(\frac{\pi x}{\ln(N)\sqrt{D/r}}\right)
 \]</div>
 <p>which solves <a class="reference internal" href="#equation-fkpp-linear-trafo">(14)</a> at steady state (<span class="math notranslate nohighlight">\(\partial_t \phi=0\)</span>) if</p>
 <div class="math notranslate nohighlight">
