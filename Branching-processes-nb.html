@@ -402,6 +402,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#survival-probability">Survival probability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-population-size-distribution">Appendix: Population size distribution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
 </ul>
@@ -419,7 +420,7 @@ document.write(`
 <h1>Branching Processes<a class="headerlink" href="#branching-processes" title="Permalink to this headline">#</a></h1>
 <p>What are general patterns we might expect when a population grows out of a single cell?</p>
 <p>One of the most basic question is to characterize how a population grows over time. Deterministically, we expect exponential growth if prolifertion at rate <span class="math notranslate nohighlight">\(a\)</span> exceeds the rate <span class="math notranslate nohighlight">\(b\)</span> of death. In many cases, both quantities are similar, for example in an epidemic situation where <span class="math notranslate nohighlight">\(R_0\)</span> is about 1, or for a slightly beneficial mutaiton in a population going through generations. In these near critical cases, it is not obvious whether a population survives rather than goes extinct by chance and, if it survives, what population size distribution on might expect.</p>
-<p>N.B.: A very nice presentation of most of the ideas in this write-up can be found in reference <span id="id1">[<a class="reference internal" href="#id3" title="Michael M Desai and Daniel S Fisher. Beneficial mutation–selection balance and the effect of linkage on positive selection. Genetics, 176(3):1759–1798, 2007.">DF07</a>]</span>.</p>
+<p>N.B.: A very nice presentation of the key features of branching processes can be found in reference <span id="id1">[<a class="reference internal" href="#id3" title="Michael M Desai and Daniel S Fisher. Beneficial mutation–selection balance and the effect of linkage on positive selection. Genetics, 176(3):1759–1798, 2007.">DF07</a>]</span>.</p>
 <div class="section" id="survival-probability">
 <h2>Survival probability<a class="headerlink" href="#survival-probability" title="Permalink to this headline">#</a></h2>
 <p>To answer this question, let’s first focus on the probability <span class="math notranslate nohighlight">\(u(t|\tau)\)</span> that an individual present at time <span class="math notranslate nohighlight">\(\tau\)</span> leaves some descendants at time <span class="math notranslate nohighlight">\(t\)</span>.</p>
@@ -541,6 +542,10 @@ u(t|\tau)=\frac{s}{1-(1-s)e^{s(\tau-t)}}=u(t-\tau)\;.
 <p class="admonition-title">Note</p>
 <p>Given survival, the asymptotic exponential growth, <span class="math notranslate nohighlight">\(s^{-1}e^{s t}\)</span>, looks as if proliferation was accelerated in the beginning. Indeed, conditioning on surviving, the population has to initially grow much faster than exponential, namely like <span class="math notranslate nohighlight">\(1+t\)</span> for a time <span class="math notranslate nohighlight">\(s^{-1}\)</span>, to run away from the absorbing boundary.</p>
 </div>
+</div>
+<div class="section" id="simulation">
+<h2>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">#</a></h2>
+<p>Let’s finally simulate a branching process and compare</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -598,9 +603,10 @@ u(t|\tau)=\frac{s}{1-(1-s)e^{s(\tau-t)}}=u(t-\tau)\;.
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/471d9e708d5282464660c3577bc02d938d421e395aacf8cc597307da052911e4.png" src="_images/471d9e708d5282464660c3577bc02d938d421e395aacf8cc597307da052911e4.png" />
+<img alt="_images/12542739628ec747e007ba31c15cdc69bfd5ba81190ec02ebc12b79ee176ebad.png" src="_images/12542739628ec747e007ba31c15cdc69bfd5ba81190ec02ebc12b79ee176ebad.png" />
 </div>
 </div>
+<p>Clearly, we capture the coarse features of the process, but there are a lot of fluctuations around the expectations, even for large times.</p>
 </div>
 <div class="section" id="appendix-population-size-distribution">
 <h2>Appendix: Population size distribution<a class="headerlink" href="#appendix-population-size-distribution" title="Permalink to this headline">#</a></h2>
@@ -622,10 +628,11 @@ G_x(t|\tau-\epsilon)=\left[1-\epsilon (a+b)\right] G_x(t|\tau)+\epsilon b +\epsi
 \sum_{n=0}^{\infty} \sum_{m=0}^{n} z^{m} p_m(t|\tau) z^{n-m} p_{n-m}(t|\tau) =  \sum_{m=0}^{\infty} z^{m} p_m(t|\tau) \sum_{n-m=0}^{\infty} z^{n-m} p_{n-m}(t|\tau) =G_x(t|\tau)^2 \;.
 \]</div>
 <p>In the second step, we defined <span class="math notranslate nohighlight">\(p_{&lt;0}(t|\tau)=0\)</span>.</p>
-<p>In the continuous limit and after rescaling time, we find
-$<span class="math notranslate nohighlight">\(
+<p>In the continuous limit and after rescaling time, we find</p>
+<div class="math notranslate nohighlight">
+\[
 -\partial_\tau G_x = -(2-s) G_x + G_x^2 +1-s
-\)</span>$</p>
+\]</div>
 <p>First notice that we have a special solution <span class="math notranslate nohighlight">\(G_x^\infty\equiv G_x(t-\tau\to\infty)=(1-s)\)</span>, which simply corresponds to the fact that with probability <span class="math notranslate nohighlight">\((1-s)\)</span> the process goes extinct (<span class="math notranslate nohighlight">\(N(t)=0\)</span>).</p>
 <p>Substituting <span class="math notranslate nohighlight">\(G_x(t)=G_x^\infty+g_x(t)\)</span>, we have to solve a logistic equation (again!)</p>
 <div class="math notranslate nohighlight">
@@ -794,6 +801,7 @@ G_x(t) = 1-s+\frac{s}{1+e^{s(t-\tau)}\frac{1-x}{s+x-1}}\;.
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#survival-probability">Survival probability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-population-size-distribution">Appendix: Population size distribution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
 </ul>
