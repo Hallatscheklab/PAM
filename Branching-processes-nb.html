@@ -496,10 +496,6 @@ u(t|\tau)=\frac{s}{1-(1-s)e^{s(\tau-t)}}=u(t-\tau)\;.
 <span class="eqno">(6)<a class="headerlink" href="#equation-mean-abundance" title="Permalink to this equation">#</a></span>\[
     \langle N(t)|N(t)\geq1 \rangle =\frac{e^{st}}{u(t)}=1+\frac{e^{s t}-1}{s}
 \]</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Given survival, the asymptotic exponential growth, <span class="math notranslate nohighlight">\(s^{-1}e^{s t}\)</span>, looks as if proliferation was accelerated in the beginning. Indeed, conditioning on surviving, the population has to initially grow much faster than exponential, namely like <span class="math notranslate nohighlight">\(1+t\)</span> for a time <span class="math notranslate nohighlight">\(s^{-1}\)</span>, to run away from the absorbing boundary.</p>
-</div>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -539,6 +535,56 @@ u(t|\tau)=\frac{s}{1-(1-s)e^{s(\tau-t)}}=u(t-\tau)\;.
 </details>
 <div class="cell_output docutils container">
 <img alt="_images/0912b3f7ad18cdb786982f0b6c6e74232febf9440adbf829920010c82741df2a.png" src="_images/0912b3f7ad18cdb786982f0b6c6e74232febf9440adbf829920010c82741df2a.png" />
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Given survival, the asymptotic exponential growth, <span class="math notranslate nohighlight">\(s^{-1}e^{s t}\)</span>, looks as if proliferation was accelerated in the beginning. Indeed, conditioning on surviving, the population has to initially grow much faster than exponential, namely like <span class="math notranslate nohighlight">\(1+t\)</span> for a time <span class="math notranslate nohighlight">\(s^{-1}\)</span>, to run away from the absorbing boundary.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="k">def</span> <span class="nf">simulate_branching_process</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">replicates</span><span class="p">,</span> <span class="n">time_period</span><span class="p">):</span>
+    <span class="n">population_sizes</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">replicates</span><span class="p">):</span>
+        <span class="n">population</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Start with one particle at time 0</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">while</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="n">time_period</span><span class="p">:</span>
+            <span class="n">new_population_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">((</span><span class="mi">1</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="n">population</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
+            <span class="n">population</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_population_size</span><span class="p">)</span>
+            <span class="n">t</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">population_sizes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">population_sizes</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">replicates</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">time_period</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="n">population_sizes</span> <span class="o">=</span> <span class="n">simulate_branching_process</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">replicates</span><span class="p">,</span> <span class="n">time_period</span><span class="p">)</span>
+
+<span class="c1"># Plotting the results</span>
+<span class="n">time_points</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">time_period</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">population</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">population_sizes</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_points</span><span class="p">,</span> <span class="n">population</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Population Size&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/99b1cd0a3f12c9d43368f806d96ffb1868db958bec4801ff87d4dd0dfa9b2828.png" src="_images/99b1cd0a3f12c9d43368f806d96ffb1868db958bec4801ff87d4dd0dfa9b2828.png" />
 </div>
 </div>
 </div>
