@@ -420,7 +420,7 @@ document.write(`
 <h1>Branching Processes<a class="headerlink" href="#branching-processes" title="Permalink to this headline">#</a></h1>
 <p>What are general patterns we might expect when a population grows out of a single cell?</p>
 <p>One of the most basic question is to characterize how a population grows over time. Deterministically, we expect exponential growth if prolifertion at rate <span class="math notranslate nohighlight">\(a\)</span> exceeds the rate <span class="math notranslate nohighlight">\(b\)</span> of death. In many cases, both quantities are similar, for example in an epidemic situation where <span class="math notranslate nohighlight">\(R_0\)</span> is about 1, or for a slightly beneficial mutaiton in a population going through generations. In these near critical cases, it is not obvious whether a population survives rather than goes extinct by chance and, if it survives, what population size distribution on might expect.</p>
-<p>N.B.: A very nice presentation of the key features of branching processes can be found in reference <span id="id1">[<a class="reference internal" href="#id3" title="Michael M Desai and Daniel S Fisher. Beneficial mutation–selection balance and the effect of linkage on positive selection. Genetics, 176(3):1759–1798, 2007.">DF07</a>]</span>.</p>
+<p>N.B.: A very nice presentation of the key features of branching processes can be found in reference <span id="id1">[<a class="reference internal" href="Traveling-Waves-nb.html#id6" title="Michael M Desai and Daniel S Fisher. Beneficial mutation–selection balance and the effect of linkage on positive selection. Genetics, 176(3):1759–1798, 2007.">DF07</a>]</span>.</p>
 <div class="section" id="survival-probability">
 <h2>Survival probability<a class="headerlink" href="#survival-probability" title="Permalink to this headline">#</a></h2>
 <p>To answer this question, let’s first focus on the probability <span class="math notranslate nohighlight">\(u(t|\tau)\)</span> that an individual present at time <span class="math notranslate nohighlight">\(\tau\)</span> leaves some descendants at time <span class="math notranslate nohighlight">\(t\)</span>.</p>
@@ -467,7 +467,7 @@ u(t|\tau)=\frac{s}{1-(1-s)e^{s(\tau-t)}}=u(t-\tau)\;.
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="c1"># allow TeX</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;text.usetex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 
 <span class="n">s</span> <span class="o">=</span> <span class="mf">0.1</span>
 <span class="n">tmax</span> <span class="o">=</span> <span class="mi">10</span>
@@ -488,7 +488,7 @@ u(t|\tau)=\frac{s}{1-(1-s)e^{s(\tau-t)}}=u(t-\tau)\;.
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/e2f85c46b4cf3d6ec25b714cfdcfdd6f70e4cf0fa860fd167a3e4177cf7128d1.png" src="_images/e2f85c46b4cf3d6ec25b714cfdcfdd6f70e4cf0fa860fd167a3e4177cf7128d1.png" />
+<img alt="_images/d485ec84390a16d28179ce1998b5910f471cac663895a7fd8a36dc2d15c2f4c4.png" src="_images/d485ec84390a16d28179ce1998b5910f471cac663895a7fd8a36dc2d15c2f4c4.png" />
 </div>
 </div>
 <p>From the linear first moment equation, <span class="math notranslate nohighlight">\(\partial_t \langle N(t)\rangle=s \langle N(t)\rangle\)</span>, it is clear that the expectation of the abundance as a function of time is a simple exponential, <span class="math notranslate nohighlight">\(\langle N(t) \rangle =e^{st}\)</span>, which is the solution to the averaged.</p>
@@ -508,7 +508,7 @@ u(t|\tau)=\frac{s}{1-(1-s)e^{s(\tau-t)}}=u(t-\tau)\;.
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="c1"># allow TeX</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;text.usetex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 
 <span class="n">s</span> <span class="o">=</span> <span class="mf">0.1</span>
 <span class="n">tmax</span> <span class="o">=</span> <span class="mi">30</span>
@@ -535,12 +535,12 @@ u(t|\tau)=\frac{s}{1-(1-s)e^{s(\tau-t)}}=u(t-\tau)\;.
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/0912b3f7ad18cdb786982f0b6c6e74232febf9440adbf829920010c82741df2a.png" src="_images/0912b3f7ad18cdb786982f0b6c6e74232febf9440adbf829920010c82741df2a.png" />
+<img alt="_images/936cfc76dfab933e5aa7d58df7fcd113ce507b512111c1a709e61d6701340934.png" src="_images/936cfc76dfab933e5aa7d58df7fcd113ce507b512111c1a709e61d6701340934.png" />
 </div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Given survival, the asymptotic exponential growth, <span class="math notranslate nohighlight">\(s^{-1}e^{s t}\)</span>, looks as if proliferation was accelerated in the beginning. Indeed, conditioning on surviving, the population has to initially grow much faster than exponential, namely like <span class="math notranslate nohighlight">\(1+t\)</span> for a time <span class="math notranslate nohighlight">\(s^{-1}\)</span>, to run away from the absorbing boundary.</p>
+<p>Given survival, the asymptotic exponential growth, <span class="math notranslate nohighlight">\(s^{-1}e^{s t}\)</span>, looks as if proliferation started with <span class="math notranslate nohighlight">\(s^{-1}\)</span> individuals in the beginning (or earlier). This is due to accelerated growth in the beginning. Conditioned on survival, the population has to initially grow much faster than exponential, namely like <span class="math notranslate nohighlight">\(1+t\)</span> for a time <span class="math notranslate nohighlight">\(s^{-1}\)</span>, to run away from the absorbing boundary.</p>
 </div>
 </div>
 <div class="section" id="simulation">
@@ -555,6 +555,7 @@ u(t|\tau)=\frac{s}{1-(1-s)e^{s(\tau-t)}}=u(t-\tau)\;.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
 <span class="k">def</span> <span class="nf">simulate_branching_process</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">replicates</span><span class="p">,</span> <span class="n">time_period</span><span class="p">):</span>
@@ -603,7 +604,7 @@ u(t|\tau)=\frac{s}{1-(1-s)e^{s(\tau-t)}}=u(t-\tau)\;.
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/12542739628ec747e007ba31c15cdc69bfd5ba81190ec02ebc12b79ee176ebad.png" src="_images/12542739628ec747e007ba31c15cdc69bfd5ba81190ec02ebc12b79ee176ebad.png" />
+<img alt="_images/faf404bf7679794a42a1b8d35bdcb3dab319f00a5ffa3f35325128c2765e60ba.png" src="_images/faf404bf7679794a42a1b8d35bdcb3dab319f00a5ffa3f35325128c2765e60ba.png" />
 </div>
 </div>
 <p>Clearly, we capture the coarse features of the process, but there are a lot of fluctuations around the expectations, even for large times.</p>
@@ -724,9 +725,6 @@ G_x(t) = 1-s+\frac{s}{1+e^{s(t-\tau)}\frac{1-x}{s+x-1}}\;.
 </dd>
 <dt class="label" id="id7"><span class="brackets">HG16</span></dt>
 <dd><p>Oskar Hallatschek and Lukas Geyrhofer. Collective fluctuations in the dynamics of adaptation and other traveling waves. <em>Genetics</em>, 202(3):1201–1227, 2016.</p>
-</dd>
-<dt class="label" id="id8"><span class="brackets">HdHPK14</span></dt>
-<dd><p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
 </dd>
 </dl>
 </div>
