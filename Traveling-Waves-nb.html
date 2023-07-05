@@ -400,8 +400,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#incorporating-dispersal">Incorporating dispersal</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ignoring-non-linearities">Ignoring non-linearities</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-population-densities">Finite population densities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#including-population-control">Including population control</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#effects-of-discreteness">Effects of discreteness</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-code-to-simulate-fkpp-waves">Simple code to simulate FKPP waves</a></li>
 </ul>
@@ -438,23 +439,43 @@ document.write(`
 <p>Now that we’ve modeled the basic stochastic dynamics of growing populations, we’d like to embed the population in space. In the simplest case, we can imagine that each particle is merely diffusing without any active motion in a certain direction. Then, when we start with one initial particle, we will observe the development of fronts through which the population expands in space. These fronts can serve as quantitative models of range expansions, epidemic outbreaks or evolutionary adaptation. Below we focus on the leading order behavior of the speed and shape of the fronts. Our treatment of number fluctuations is adhoc, but hopefully illuminating and can be made more rigorous.</p>
 <p>Once we allow the population to be distributed in space, we need a field, the number density <span class="math notranslate nohighlight">\(c(x,t)\)</span> at position <span class="math notranslate nohighlight">\(x\)</span> and time <span class="math notranslate nohighlight">\(t\)</span>, to describe the state of the population, rather than a single number (the total population size). This makes the problem infinite dimensional and, thus, very challenging in general.</p>
 <p>Still, progress can be made in special cases, for example, in the absence of non-linearities (e.g. no logistic control) or in deterministic limits. It turns out, however, that both non-linearities and number fluctuations matter for a realistic description of traveling waves.</p>
+<p>We will first ignore fluctuations entirely, incorporate dispersal and see what such mean-field theories would predict.</p>
+<div class="section" id="incorporating-dispersal">
+<h2>Incorporating dispersal<a class="headerlink" href="#incorporating-dispersal" title="Permalink to this headline">#</a></h2>
+<p>Given a well-mixed model <span class="math notranslate nohighlight">\(\partial_t N=s N\)</span> for the net-growth of a population, the simplest way to include space is to say that the growth law applies locally and dispersal locally conserves particle numbers. Mathematically, this can be written as</p>
+<div class="math notranslate nohighlight">
+\[
+\partial_t c(x,t)=s(x,t) c(x,t) - \partial_x j(x,t) \;,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(c(x,t)\)</span> is the number density at position <span class="math notranslate nohighlight">\(x\)</span> and time <span class="math notranslate nohighlight">\(t\)</span>. The second term on the right hand site is the one-dimensional divergence of a local particle current <span class="math notranslate nohighlight">\(j(x,t)\)</span>, which represents the rate of chance of the number density of <span class="math notranslate nohighlight">\(x\)</span> due to local dispersal. When the current decreases with  <span class="math notranslate nohighlight">\(x\)</span>, densities must increase – hence the minus sign.</p>
+<p>In the simplest case, we assume that the current is proportional to the gradient of the density,</p>
+<div class="math notranslate nohighlight">
+\[
+j(x,t)=-D \partial_x c \;.
+\]</div>
+<p>Naturally the current goes from the high to low density regions – hence the minus sign. This ansatz corresponds to diffusion and represents a coarse-grained model of a population where individuals carry out unbiased short-range dispersal.</p>
+<p>Local dispersal seems like a strong assumption. More generally, we may introduce a jump kernal <span class="math notranslate nohighlight">\(K(\Delta x)\)</span> representing the rate at which an individual jumps from <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\(x+\Delta x\)</span>. In that case, we may formulate the dynamics as follows</p>
+<div class="math notranslate nohighlight">
+\[
+\partial_t c(x,t)=s(x,t) c(x,t) + \int_{y}K(x-y) (c(y,t)-c(x,t) \;.
+\]</div>
+<p>It turns out, the diffusion approximation is an accurate description on long time and length scales if the kernel is sufficiently rapidly decaying with distance. However, what “sufficiently short-range” means depends on the reaction term. For the case of no reaction, <span class="math notranslate nohighlight">\(s=0\)</span>, one finds super-diffusive behavior, so called Levy flights, if <span class="math notranslate nohighlight">\(K(\Delta x)\)</span> has a diverging variance. With a reaction term, non-diffusive behavior occurs even if the variance is finite but strongly depends on the presence of noise (see slides).</p>
+</div>
 <div class="section" id="ignoring-non-linearities">
 <h2>Ignoring non-linearities<a class="headerlink" href="#ignoring-non-linearities" title="Permalink to this headline">#</a></h2>
-<p>We begin by analyzing the deterministic scenario of a traveling wave.
-To this end, we generalize our deterministic branching process to space,</p>
+<p>If we ignore the non-linear population control and assume the growth rate <span class="math notranslate nohighlight">\(s\)</span> is strictly constant,
+$<span class="math notranslate nohighlight">\(
+\partial_t c=D\partial_x^2 c+ s c\;,
+\)</span><span class="math notranslate nohighlight">\( (mean-branching-random-walk)
+we can easily solve the ensuing reaction-diffusion equation. Namely, by substituting \)</span>c(c,t)=\psi(c,t)e^{st}$, we can get rid of the reaction term and obtain a simple diffusion equation,</p>
 <div class="math notranslate nohighlight">
 \[
-\partial_t c=D\partial_x^2 c+ (a-b) c
+\partial_t \psi=D\partial_x^2 \psi \;,
 \]</div>
-<p>If <span class="math notranslate nohighlight">\(r\equiv a-b\)</span> is constant, this equation can be analyzed by substituting <span class="math notranslate nohighlight">\(c(c,t)=\psi(c,t)e^{rt}\)</span>, we obtain</p>
+<p>which we know how to solve. For example, if we assume localized initial conditions, we get a widening Gaussian with variance growing like <span class="math notranslate nohighlight">\(2D t\)</span>. In terms of the number density, this solution reads</p>
 <div class="math notranslate nohighlight">
 \[
-\partial_t \psi=D\partial_x^2 \psi \;.
-\]</div>
-<p>We have thus obtained a simple diffusion equation without growth. It is straight-forward to show that a widening Gaussian is the solution to a localized initial condition. In terms of the number density, this solution reads</p>
-<div class="math notranslate nohighlight">
-\[
-c(x,t)=e^{r t}e^{\frac{-x^2}{4Dt}} (4\pi Dt)^{-1/2}\;.
+c(x,t)=e^{s t}e^{\frac{-x^2}{4Dt}} (4\pi Dt)^{-1/2}\;.
 \]</div>
 <p>Although the solution has a well-defined peak, its tails extend to infinity. In any real simulation of discrete particles, there will instead be a most advanced particle.</p>
 <p>We can try to estimate the position of the most advanced particle in an adhoc way by asking: “At what position will the density drop below some threshold density <span class="math notranslate nohighlight">\(\epsilon\)</span>?” This should occur for <span class="math notranslate nohighlight">\(x&gt;\ell(t)\)</span> where <span class="math notranslate nohighlight">\(c(\ell(t),t)=\epsilon\)</span>, yielding <span class="math notranslate nohighlight">\(\ell(t)\sim v_F t\)</span> where <span class="math notranslate nohighlight">\(v_F\)</span> is the so-called Fisher-Kolmogorov velocity,</p>
@@ -463,22 +484,21 @@ c(x,t)=e^{r t}e^{\frac{-x^2}{4Dt}} (4\pi Dt)^{-1/2}\;.
 v_F=2\sqrt{Ds}\;.
 \]</div>
 </div>
-<div class="section" id="finite-population-densities">
-<h2>Finite population densities<a class="headerlink" href="#finite-population-densities" title="Permalink to this headline">#</a></h2>
-<p>By estimating the most advanced individual, we have just analyzed our first effect of the discreteness of the particles. Our answer is even asymptotically correct, as it is based on the correct mean number density for fixed birth and death rates and the relative uncertainty vanishes on long times. The relative simplicity of our analysis stems from the linearity of the underlying equation of motion.</p>
-<p>Once, we introduce non-linearities to limit the population size, a deterministic analysis becomes not only adhoc but asymptotically incorrect. Number fluctuations modify the behavior of dynamic processes in interesting (singular) ways, as we will see.</p>
-<p>The simplest way to introduce a finite population is to introduce a quadratic non-linearity that induces saturation at a finite number density, called carrying capacity <span class="math notranslate nohighlight">\(K\)</span>,</p>
+<div class="section" id="including-population-control">
+<h2>Including population control<a class="headerlink" href="#including-population-control" title="Permalink to this headline">#</a></h2>
+<p>By estimating the most advanced individual, we have just estimated an effect of the discreteness of the particles: There’s always a leading edge. Our answer for the asymptotic velocity of that leading edge is is even the asymptotically correct result for a branching random walk, whose  first moment equation is linear and exactly given by <code class="xref eq docutils literal notranslate"><span class="pre">mean-branching-random-walk</span></code>.</p>
+<p>However, the linearized model  has the unrealistic feature of an bulk population that grows without bound. To limit growth, we will now re-introduce non-linear logistic control, which yields the so-called Fisher-Kolmogorov equation,</p>
 <div class="math notranslate nohighlight" id="equation-fkpp-eq">
 <span class="eqno">(8)<a class="headerlink" href="#equation-fkpp-eq" title="Permalink to this equation">#</a></span>\[
-\partial_t c=D\partial_x^2 c+r c \left(1-\frac cK\right) \;.
+\partial_t c=D\partial_x^2 c+s c \left(1-\frac cK\right) \;.
 \]</div>
-<p>After some relaxation time, we expect the population to settle into a steadily moving wave train. In the co-moving frame, we find</p>
+<p>Under this model, the population develops, after some relaxation time, a steadily moving wave train. In the co-moving frame, the population profile becomes steady,</p>
 <div class="math notranslate nohighlight">
 \[
-0=D\partial_x^2 c+v \partial_x c + r c \left(1-\frac cK\right) \;.
+0=D\partial_x^2 c+v \partial_x c + s c \left(1-\frac cK\right) \;.
 \]</div>
-<p>In the tip of the wave, where <span class="math notranslate nohighlight">\(c\ll K\)</span>, one can focus on the linearized version of this equation and finds an exponentially decaying density profile <span class="math notranslate nohighlight">\(c\sim e^{-k x}\)</span> where <span class="math notranslate nohighlight">\(k\)</span> satisfies <span class="math notranslate nohighlight">\(D k^2-v k+r=0\)</span>. This quadratic equation has a solution with positive <span class="math notranslate nohighlight">\(k\)</span> only if the speed is larger or equal to the Fisher velocity <span class="math notranslate nohighlight">\(v\geq v_F=2\sqrt{D r}\)</span>. Which velocity is realized however?</p>
-<p>That velocity selection problem requires some thought in general, but has an easy answer for localized initial conditions. In that case, we already know that the FKPP equation without non-linearity, which maps to the mean branching random walk, has a front that advances at speed equal to <span class="math notranslate nohighlight">\(v_F\)</span>. Obviously, adding a negative term to the right side cannot <em>accelerate</em> the wave. Therefore, we can conclude that even the above non-linear waves travel, asymptotically, at the speed of the classical Fisher wave speed. Indeed, a more careful analysis shows that any initial condition with compact support leads to waves with <span class="math notranslate nohighlight">\(v=v_F\)</span> and to an asymptotic density profile <span class="math notranslate nohighlight">\(c\sim e^{v x/2 D}\)</span>.</p>
+<p>In the tip of the wave, where <span class="math notranslate nohighlight">\(c\ll K\)</span>, we can focus on the linearized version of this equation, which admits exponentially decaying solutions <span class="math notranslate nohighlight">\(c\sim e^{-k x}\)</span> where <span class="math notranslate nohighlight">\(k\)</span> satisfying <span class="math notranslate nohighlight">\(D k^2-v k+r=0\)</span>. This quadratic equation has a solution with positive <span class="math notranslate nohighlight">\(k\)</span> only if the speed is larger or equal to the Fisher velocity <span class="math notranslate nohighlight">\(v\geq v_F=2\sqrt{D r}\)</span>. Which of these velocities is realized however?</p>
+<p>This so-called velocity selection problem requires some thought in general, but has an easy answer for localized initial conditions. In that case, we already know that the FKPP equation without non-linearity, which maps to the mean branching random walk, has a front that advances at speed equal to <span class="math notranslate nohighlight">\(v_F\)</span>. Obviously, adding a negative term to the right side cannot <em>accelerate</em> the wave. Therefore, we can conclude that even the above non-linear waves travel, asymptotically, at the speed of the classical Fisher wave speed. Indeed, a more careful analysis shows that any initial condition with compact support leads to waves with <span class="math notranslate nohighlight">\(v=v_F\)</span> and to an asymptotic density profile <span class="math notranslate nohighlight">\(c\sim e^{v x/2 D}\)</span>.</p>
 <div class="figure align-default" id="rolling-balls">
 <a class="reference internal image-reference" href="_images/FKPP-rolling-ball-analogy.jpg"><img alt="_images/FKPP-rolling-ball-analogy.jpg" src="_images/FKPP-rolling-ball-analogy.jpg" style="height: 300px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Rolling ball analogy for the steady state equation describing the FKPP wave profile</span><a class="headerlink" href="#rolling-balls" title="Permalink to this image">#</a></p>
@@ -506,7 +526,7 @@ v_F=2\sqrt{Ds}\;.
 <span class="n">D</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># Diffusion coefficient</span>
 <span class="n">a</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># Fisher-Kolmogorov parameter</span>
 <span class="n">L</span> <span class="o">=</span> <span class="mf">30.0</span>  <span class="c1"># Length of the domain</span>
-<span class="n">T</span> <span class="o">=</span> <span class="mf">10.0</span>  <span class="c1"># Simulation time</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mf">20.0</span>  <span class="c1"># Simulation time</span>
 <span class="n">dx</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># Spatial step size</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1"># Time step size</span>
 
@@ -549,7 +569,7 @@ v_F=2\sqrt{Ds}\;.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/44196da2071ad9c1b48865390effd8fd99db8f0e0a1f954350feeb3b016d0811.png" src="_images/44196da2071ad9c1b48865390effd8fd99db8f0e0a1f954350feeb3b016d0811.png" />
+<img alt="_images/4579a9a761090a200bc3807542e4055846910a73d963820433ccd42a98239dc9.png" src="_images/4579a9a761090a200bc3807542e4055846910a73d963820433ccd42a98239dc9.png" />
 </div>
 </div>
 <p>The above code is modified version of what ChatGPT gave me when I asked “write a simple python code to simulate a traveling Fisher Kolmogorov wave”:</p>
@@ -581,7 +601,7 @@ j=-D_*\partial_\xi G+ v_* G \;,
 <p>We have the mathematical form of the diffusion equation, but what’s the diffusivity and what’s the bias? A simple calculation shows that the diffusivity, <span class="math notranslate nohighlight">\(D_*=D\)</span> is the same as forward in time but that the bias is number density dependent,</p>
 <div class="math notranslate nohighlight">
 \[
-v_*(\xi,\tau)=2 D \partial_\xi\ln[c(\xi,t)]
+v_*(\xi,\tau)=2 D \partial_\xi\ln[c(\xi,\tau)]
 \]</div>
 <p>In the co-moving frame, we expect the particle current to vanish</p>
 <div class="math notranslate nohighlight">
@@ -827,8 +847,9 @@ v\sim 2 s^2 \frac{\ln N }{\ln^2{U}}
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#incorporating-dispersal">Incorporating dispersal</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ignoring-non-linearities">Ignoring non-linearities</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-population-densities">Finite population densities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#including-population-control">Including population control</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#effects-of-discreteness">Effects of discreteness</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-code-to-simulate-fkpp-waves">Simple code to simulate FKPP waves</a></li>
 </ul>
