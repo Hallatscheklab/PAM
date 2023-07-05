@@ -159,8 +159,6 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Branching Processes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Traveling-Waves-nb.html">Traveling waves</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Soft%20PAM%20I.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Soft%20PAM%20II.html">Markdown Files</a></li>
 </ul>
 
     </div>
@@ -207,6 +205,55 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/Hallatscheklab/PAM/master?urlpath=tree/Branching-processes-nb.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/Hallatscheklab/PAM/blob/master/Branching-processes-nb.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -215,7 +262,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+      <li><a href="https://github.com/Hallatscheklab/PAM" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -232,7 +279,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FBranching-processes-nb.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/Hallatscheklab/PAM/issues/new?title=Issue%20on%20page%20%2FBranching-processes-nb.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -355,6 +402,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#survival-probability">Survival probability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-population-size-distribution">Appendix: Population size distribution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
 </ul>
             </nav>
@@ -371,6 +420,7 @@ document.write(`
 <h1>Branching Processes<a class="headerlink" href="#branching-processes" title="Permalink to this headline">#</a></h1>
 <p>What are general patterns we might expect when a population grows out of a single cell?</p>
 <p>One of the most basic question is to characterize how a population grows over time. Deterministically, we expect exponential growth if prolifertion at rate <span class="math notranslate nohighlight">\(a\)</span> exceeds the rate <span class="math notranslate nohighlight">\(b\)</span> of death. In many cases, both quantities are similar, for example in an epidemic situation where <span class="math notranslate nohighlight">\(R_0\)</span> is about 1, or for a slightly beneficial mutaiton in a population going through generations. In these near critical cases, it is not obvious whether a population survives rather than goes extinct by chance and, if it survives, what population size distribution on might expect.</p>
+<p>N.B.: A very nice presentation of the key features of branching processes can be found in reference <span id="id1">[<a class="reference internal" href="#id3" title="Michael M Desai and Daniel S Fisher. Beneficial mutation–selection balance and the effect of linkage on positive selection. Genetics, 176(3):1759–1798, 2007.">DF07</a>]</span>.</p>
 <div class="section" id="survival-probability">
 <h2>Survival probability<a class="headerlink" href="#survival-probability" title="Permalink to this headline">#</a></h2>
 <p>To answer this question, let’s first focus on the probability <span class="math notranslate nohighlight">\(u(t|\tau)\)</span> that an individual present at time <span class="math notranslate nohighlight">\(\tau\)</span> leaves some descendants at time <span class="math notranslate nohighlight">\(t\)</span>.</p>
@@ -401,8 +451,17 @@ For simplicity, we assume the relative growth rate difference <span class="math 
 \[
 u(t|\tau)=\frac{s}{1-(1-s)e^{s(\tau-t)}}=u(t-\tau)\;.
 \]</div>
-<p>Note, that our final result only depends on the time difference. That changes if we birth and death rates are time-dependent.</p>
-<div class="cell docutils container">
+<p>Note, that our final result only depends on the time difference, provided that birth and death rates are time-dependent.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The long-term survival probability of a super critical branching process is given by the relative growth rate difference between birth and death rate, <span class="math notranslate nohighlight">\(s=(a-b)/a\)</span>.</p>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -427,47 +486,23 @@ u(t|\tau)=\frac{s}{1-(1-s)e^{s(\tau-t)}}=u(t-\tau)\;.
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="_images/e2f85c46b4cf3d6ec25b714cfdcfdd6f70e4cf0fa860fd167a3e4177cf7128d1.png" src="_images/e2f85c46b4cf3d6ec25b714cfdcfdd6f70e4cf0fa860fd167a3e4177cf7128d1.png" />
 </div>
 </div>
-<p>First notice that we have a special solution <span class="math notranslate nohighlight">\(G_x^\infty\equiv G_x(t-\tau\to\infty)=(1-s)\)</span>, which simply corresponds to the fact that with probability <span class="math notranslate nohighlight">\((1-s)\)</span> the process goes extinct (<span class="math notranslate nohighlight">\(N(t)=0\)</span>).</p>
-<p>Substituting <span class="math notranslate nohighlight">\(G_x(t)=G_x^\infty+g_x(t)\)</span>, we have to solve the homogeneous equation</p>
-<div class="math notranslate nohighlight">
-\[
--\partial_\tau g_x = -s g_x + g_x^2
-\]</div>
-<p>subject to final condition <span class="math notranslate nohighlight">\(x=G_x(t)=g_x(t)+1-s\)</span>, i.e., <span class="math notranslate nohighlight">\(g_x(t)=s+x-1\)</span>, and the long-time limit <span class="math notranslate nohighlight">\(g_x(-\infty)=0\)</span>.</p>
-<p>This logistic differential equation can be solved for <span class="math notranslate nohighlight">\(x\leq 1\)</span> (indicating the radius of convergence) as above, yielding</p>
-<div class="math notranslate nohighlight">
-\[
-G_x(t) = 1-s+\frac{s}{1+e^{s(t-\tau)}\frac{1-x}{s+x-1}}\;.
-\]</div>
-<p>A power series expansion returns the sought after abundance distribution, which for <span class="math notranslate nohighlight">\(\tau=0\)</span> is given by</p>
-<div class="math notranslate nohighlight" id="equation-abundance-pdf">
-<span class="eqno">(3)<a class="headerlink" href="#equation-abundance-pdf" title="Permalink to this equation">#</a></span>\[\begin{split}
-    p_n(t)=\left\{\begin{array}{cc}
-  &amp; 
-\begin{array}{cc}
- s^2 e^{s t} \left(e^{s t}-1\right)^{n-1} \left(e^{s t}+s-1\right)^{-n-1} &amp; n\geq 1 \\
- \frac{(1-s) \left(e^{s t}-1\right)}{e^{s t}+s-1} &amp; n=0 \\
-\end{array}
- \\
-\end{array}\right.
-\end{split}\]</div>
-<p>Notice that <span class="math notranslate nohighlight">\(p_0(t)=1-u(t)\)</span> as expected.</p>
-<p>Since the distribution is quite broad, one would like to know some characteristic features. The mean is given by</p>
+<p>From the linear first moment equation, <span class="math notranslate nohighlight">\(\partial_t \langle N(t)\rangle=s \langle N(t)\rangle\)</span>, it is clear that the expectation of the abundance as a function of time is a simple exponential, <span class="math notranslate nohighlight">\(\langle N(t) \rangle =e^{st}\)</span>, which is the solution to the averaged.</p>
+<p>But now, with the survival probability at hand, we can also predict the expected abundance given survival, because <span class="math notranslate nohighlight">\(\langle N(t)\rangle=u(t)\langle N(t)|\text{survival} \rangle\)</span>, or</p>
 <div class="math notranslate nohighlight" id="equation-mean-abundance">
-<span class="eqno">(5)<a class="headerlink" href="#equation-mean-abundance" title="Permalink to this equation">#</a></span>\[
-    \langle N(t) \rangle =\partial_x|_{x=1} G_x(t)=e^{st}
-\]</div>
-<p>which again is a sanity check.</p>
-<p>But, more interesting, is the mean given survival,</p>
-<div class="math notranslate nohighlight" id="equation-mean-abundance">
-<span class="eqno">(5)<a class="headerlink" href="#equation-mean-abundance" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(6)<a class="headerlink" href="#equation-mean-abundance" title="Permalink to this equation">#</a></span>\[
     \langle N(t)|N(t)\geq1 \rangle =\frac{e^{st}}{u(t)}=1+\frac{e^{s t}-1}{s}
 \]</div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -480,51 +515,217 @@ G_x(t) = 1-s+\frac{s}{1+e^{s(t-\tau)}\frac{1-x}{s+x-1}}\;.
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">tmax</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">s</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">s</span> 
 
+<span class="n">yapprox</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">s</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">/</span><span class="n">s</span> 
+
+
 <span class="c1"># Add title and axis names</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Growth conditional on survival for selective advantage $s = 0.1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Expected Growth conditional on survival for selective advantage $s = 0.1$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t $&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\langle N(t)|N(t)\geq1 \rangle $&#39;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span> <span class="mi">0</span> <span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">tmax</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="c1">#plt.hlines(y = 1/s, xmin= 0 , xmax=tmax, colors=&#39;purple&#39;, linestyles=&#39;--&#39;, lw=2, label=&#39;s&#39;)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">yapprox</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/0912b3f7ad18cdb786982f0b6c6e74232febf9440adbf829920010c82741df2a.png" src="_images/0912b3f7ad18cdb786982f0b6c6e74232febf9440adbf829920010c82741df2a.png" />
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Given survival, the asymptotic exponential growth, <span class="math notranslate nohighlight">\(s^{-1}e^{s t}\)</span>, looks as if proliferation was accelerated in the beginning. Indeed, conditioning on surviving, the population has to initially grow much faster than exponential, namely like <span class="math notranslate nohighlight">\(1+t\)</span> for a time <span class="math notranslate nohighlight">\(s^{-1}\)</span>, to run away from the absorbing boundary.</p>
+</div>
+</div>
+<div class="section" id="simulation">
+<h2>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">#</a></h2>
+<p>Let’s finally simulate a branching process and compare</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="k">def</span> <span class="nf">simulate_branching_process</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">replicates</span><span class="p">,</span> <span class="n">time_period</span><span class="p">):</span>
+    <span class="n">population_sizes</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">replicates</span><span class="p">):</span>
+        <span class="n">population</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Start with one particle at time 0</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">while</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="n">time_period</span><span class="p">:</span>
+            <span class="n">new_population_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">((</span><span class="mi">1</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="n">population</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
+            <span class="n">population</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_population_size</span><span class="p">)</span>
+            <span class="n">t</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">population_sizes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">population_sizes</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">replicates</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">time_period</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="n">population_sizes</span> <span class="o">=</span> <span class="n">simulate_branching_process</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">replicates</span><span class="p">,</span> <span class="n">time_period</span><span class="p">)</span>
+
+<span class="c1"># Plotting the results</span>
+<span class="n">time_points</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">time_period</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">population</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">population_sizes</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_points</span><span class="p">,</span> <span class="n">population</span><span class="p">)</span>
+
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">time_period</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">s</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">s</span> 
+
+<span class="n">yapprox</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">s</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">/</span><span class="n">s</span> 
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">yapprox</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Population Size&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/12542739628ec747e007ba31c15cdc69bfd5ba81190ec02ebc12b79ee176ebad.png" src="_images/12542739628ec747e007ba31c15cdc69bfd5ba81190ec02ebc12b79ee176ebad.png" />
+</div>
+</div>
+<p>Clearly, we capture the coarse features of the process, but there are a lot of fluctuations around the expectations, even for large times.</p>
+</div>
+<div class="section" id="appendix-population-size-distribution">
+<h2>Appendix: Population size distribution<a class="headerlink" href="#appendix-population-size-distribution" title="Permalink to this headline">#</a></h2>
+<p>Thus far, we have derived the survival probability of the birth-death process, but we do not know the full probability distribution <span class="math notranslate nohighlight">\(p_n(t|\tau)\)</span> that the population consists of <span class="math notranslate nohighlight">\(n\)</span> individuals at time <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>But it turns out that an equation similar to the logistic equation can be derived for the moment generating function,</p>
+<div class="math notranslate nohighlight">
+\[
+G_x(t|\tau)\equiv \sum_{n=0}^{\infty} p_n(t|\tau) x^n \;,
+\]</div>
+<p>satisfies a logistic equation very similar to the survival probability.</p>
+<p>Retracing the steps from above, one can deduce that <span class="math notranslate nohighlight">\(G_x(t|\tau)\)</span> in terms of <span class="math notranslate nohighlight">\(G_x(t|\tau-\epsilon)\)</span>,</p>
+<div class="math notranslate nohighlight" id="equation-generating-fct">
+<span class="eqno">(4)<a class="headerlink" href="#equation-generating-fct" title="Permalink to this equation">#</a></span>\[ 
+G_x(t|\tau-\epsilon)=\left[1-\epsilon (a+b)\right] G_x(t|\tau)+\epsilon b +\epsilon a G_x(t|\tau)^2 \;. 
+\]</div>
+<p>To explain the last term on the RHS, notice that, upon birth, we have two particles and that the two-particle generating function is just the square of the one particle generating function:</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{n=0}^{\infty} \sum_{m=0}^{n} z^{m} p_m(t|\tau) z^{n-m} p_{n-m}(t|\tau) =  \sum_{m=0}^{\infty} z^{m} p_m(t|\tau) \sum_{n-m=0}^{\infty} z^{n-m} p_{n-m}(t|\tau) =G_x(t|\tau)^2 \;.
+\]</div>
+<p>In the second step, we defined <span class="math notranslate nohighlight">\(p_{&lt;0}(t|\tau)=0\)</span>.</p>
+<p>In the continuous limit and after rescaling time, we find</p>
+<div class="math notranslate nohighlight">
+\[
+-\partial_\tau G_x = -(2-s) G_x + G_x^2 +1-s
+\]</div>
+<p>First notice that we have a special solution <span class="math notranslate nohighlight">\(G_x^\infty\equiv G_x(t-\tau\to\infty)=(1-s)\)</span>, which simply corresponds to the fact that with probability <span class="math notranslate nohighlight">\((1-s)\)</span> the process goes extinct (<span class="math notranslate nohighlight">\(N(t)=0\)</span>).</p>
+<p>Substituting <span class="math notranslate nohighlight">\(G_x(t)=G_x^\infty+g_x(t)\)</span>, we have to solve a logistic equation (again!)</p>
+<div class="math notranslate nohighlight">
+\[
+-\partial_\tau g_x = -s g_x + g_x^2
+\]</div>
+<p>subject to final condition <span class="math notranslate nohighlight">\(x=G_x(t)=g_x(t)+1-s\)</span>, i.e., <span class="math notranslate nohighlight">\(g_x(t)=s+x-1\)</span>, and the long-time limit <span class="math notranslate nohighlight">\(g_x(-\infty)=0\)</span>.</p>
+<p>This logistic differential equation can be solved for <span class="math notranslate nohighlight">\(x\leq 1\)</span> (indicating the radius of convergence) as above, yielding</p>
+<div class="math notranslate nohighlight">
+\[
+G_x(t) = 1-s+\frac{s}{1+e^{s(t-\tau)}\frac{1-x}{s+x-1}}\;.
+\]</div>
+<p>A power series expansion returns the sought after abundance distribution, which for <span class="math notranslate nohighlight">\(\tau=0\)</span> is given by</p>
+<div class="math notranslate nohighlight" id="equation-abundance-pdf">
+<span class="eqno">(5)<a class="headerlink" href="#equation-abundance-pdf" title="Permalink to this equation">#</a></span>\[\begin{split}
+    p_n(t)=\left\{\begin{array}{cc}
+  &amp; 
+\begin{array}{cc}
+ \frac{s^2 e^{s t}}{(e^{st}+s-1)(e^{st}-1)} \left(\frac{1-e^{-s t}}{1-(1-s)e^{-s t}}\right)^{n}  &amp; n\geq 1 \\
+ \frac{(1-s) \left(e^{s t}-1\right)}{e^{s t}+s-1} &amp; n=0 \\
+\end{array}
+ \\
+\end{array}\right.
+\end{split}\]</div>
+<p>Notice that <span class="math notranslate nohighlight">\(p_0(t)=1-u(t)\)</span> as expected.</p>
+<p>Since the distribution is quite broad, one would like to know some characteristic features. The mean is given by</p>
+<div class="math notranslate nohighlight" id="equation-mean-abundance">
+<span class="eqno">(6)<a class="headerlink" href="#equation-mean-abundance" title="Permalink to this equation">#</a></span>\[
+    \langle N(t) \rangle =\partial_x|_{x=1} G_x(t)=e^{st}
+\]</div>
+<p>which again is a sanity check.</p>
+<p>From this result, we can now compute the probability distribution, given survival. This quantity is particularly relevant for <span class="math notranslate nohighlight">\(s t\ll 1\)</span>, where the population has established (with probability s or is extinct. In this limit, we find</p>
+<div class="math notranslate nohighlight" id="equation-conditioned-pdf">
+<span class="eqno">(7)<a class="headerlink" href="#equation-conditioned-pdf" title="Permalink to this equation">#</a></span>\[
+\Pr[N(t)=n|\text{survival}]=s^{-1}p_n(t)\sim s e^{-st-ns e^{-st}} 
+\]</div>
+<p>This result is better interpreted by expressing the population size <span class="math notranslate nohighlight">\(n\equiv s^{-1} e^{s(t-\Delta)}\)</span> in terms of an effective delay time <span class="math notranslate nohighlight">\(\Delta\)</span> of the exponential growth period. The distribution <a class="reference internal" href="#equation-conditioned-pdf">(7)</a> implies that this delay time follows a universal extreme value distribution,</p>
+<div class="math notranslate nohighlight">
+\[
+\Pr[\Delta]\propto e^{-s\Delta- e^{s\Delta}} \;, 
+\]</div>
+<p>the Gumbel distribution.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># allow TeX</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;text.usetex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=-</span><span class="mi">3</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">))</span> 
+
+<span class="c1"># Add title and axis names</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Gumbeldistribution for delay time $\Delta$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$s \Delta$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\Pr[\Delta|$survival$]$&#39;</span><span class="p">)</span>
+
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/8f88ba79297acd324c01a49c4d37df7745f459562648c66013a96cad997cb97d.png" src="_images/8f88ba79297acd324c01a49c4d37df7745f459562648c66013a96cad997cb97d.png" />
+<img alt="_images/0a97fa1c16e31a578a8dc60291c5e890cc98d7dc86e0076e2c904d29ab4ac51d.png" src="_images/0a97fa1c16e31a578a8dc60291c5e890cc98d7dc86e0076e2c904d29ab4ac51d.png" />
 </div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Given survival, exponential growth kicks in not until <span class="math notranslate nohighlight">\(N(t)\approx s^{-1}\)</span></p>
 </div>
 </div>
 <div class="section" id="citations">
 <h2>Citations<a class="headerlink" href="#citations" title="Permalink to this headline">#</a></h2>
-<p>You can also cite references that are stored in a <code class="docutils literal notranslate"><span class="pre">bibtex</span></code> file. For example,
-the following syntax: <code class="docutils literal notranslate"><span class="pre">{cite}`holdgraf_evidence_2014`</span></code> will render like
-this: <span id="id1">[<a class="reference internal" href="Traveling-Waves-nb.html#id10" title="Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In International Conference on Cognitive Neuroscience. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.">HdHPK14</a>]</span>.</p>
-<p>Moreover, you can insert a bibliography into your page with this syntax:
-The <code class="docutils literal notranslate"><span class="pre">{bibliography}</span></code> directive must be used for all the <code class="docutils literal notranslate"><span class="pre">{cite}</span></code> roles to
-render properly.
-For example, if the references for your book are stored in <code class="docutils literal notranslate"><span class="pre">references.bib</span></code>,
-then the bibliography is inserted with:</p>
 <div class="docutils container" id="id2">
 <dl class="citation">
-<dt class="label" id="id3"><span class="brackets">BHK18</span></dt>
+<dt class="label" id="id4"><span class="brackets">BHK18</span></dt>
 <dd><p>Gabriel Birzu, Oskar Hallatschek, and Kirill S Korolev. Fluctuations uncover a distinct class of traveling waves. <em>Proceedings of the National Academy of Sciences</em>, 115(16):E3645–E3654, 2018.</p>
 </dd>
-<dt class="label" id="id5"><span class="brackets">Hal11</span></dt>
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">DF07</a></span></dt>
+<dd><p>Michael M Desai and Daniel S Fisher. Beneficial mutation–selection balance and the effect of linkage on positive selection. <em>Genetics</em>, 176(3):1759–1798, 2007.</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets">Hal11</span></dt>
 <dd><p>Oskar Hallatschek. The noisy edge of traveling waves. <em>Proceedings of the National Academy of Sciences</em>, 108(5):1783–1787, 2011.</p>
 </dd>
-<dt class="label" id="id6"><span class="brackets">HG16</span></dt>
+<dt class="label" id="id7"><span class="brackets">HG16</span></dt>
 <dd><p>Oskar Hallatschek and Lukas Geyrhofer. Collective fluctuations in the dynamics of adaptation and other traveling waves. <em>Genetics</em>, 202(3):1201–1227, 2016.</p>
 </dd>
-<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id1">HdHPK14</a></span></dt>
+<dt class="label" id="id8"><span class="brackets">HdHPK14</span></dt>
 <dd><p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
 </dd>
 </dl>
@@ -600,6 +801,8 @@ then the bibliography is inserted with:</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#survival-probability">Survival probability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-population-size-distribution">Appendix: Population size distribution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
 </ul>
   </nav></div>
