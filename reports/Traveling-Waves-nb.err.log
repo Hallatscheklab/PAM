@@ -18,74 +18,57 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Parameters
-L = 100  # Length of the lattice
-T = 500  # Simulation time
+# Constants
 D = 0.1  # Diffusion coefficient
-r = 0.1  # net growth rate per particle
-K = 100 # carrying capacity
-dt = 0.1  # Time step size
+a = 1.0  # Fisher-Kolmogorov parameter
+L = 30.0  # Length of the domain
+T = 20.0  # Simulation time
+dx = 0.1  # Spatial step size
+dt = 0.01  # Time step size
 
-# Initialize the lattice
-lattice = np.zeros(L, dtype=int)
+noisestrength = 10
 
-# Set initial conditions
-midpoint = L // 2
-lattice[midpoint] = 1000
+sigma0 = 1 # initial width
+N0 = 10 # initial cummulative value
 
-# Simulation
-for t in range(T):
-    new_lattice = np.copy(lattice)
-    for i in range(L):
-        # Calculate diffusion
-        left = lattice[i-1] if i > 0 else lattice[L-1]
-        right = lattice[i+1] if i < L-1 else lattice[0]
-        diffusion = D * (left + right - 2 * lattice[i])
-        
-        # Calculate birth and death
-        netgrowth = r * lattice[i] * (1-lattice[i] / K)
-        
-        # Update particle count
-        new_lattice[i] += diffusion + netgrowth
-    
-    # Compute new number of individuals from Poisson distribution
-    new_lattice = np.random.poisson(new_lattice * np.heaviside(new_lattice , 0))
-    
-    # Update lattice
-    lattice = new_lattice
+# Calculate the number of spatial and temporal steps
+N = int(L / dx) + 1
+M = int(T / dt) + 1
+
+# Initialize the solution matrix
+u = np.zeros((M, N))
+
+# Set the initial condition
+u[0, :] = N0/(sigma0 * np.sqrt(2 * np.pi)) * np.exp( - (np.linspace(0, L, N)-L/2)**2 / (2 * sigma0**2))
+                      
+#u[0, :] = np.sin(np.pi * np.linspace(0, L, N) / L)
+
+# Apply the finite difference method
+for k in range(M - 1):
+    for i in range(1, N - 1):
+        u[k + 1, i] = np.random.poisson((u[k, i] + dt * (
+            D * (u[k, i - 1] - 2 * u[k, i] + u[k, i + 1]) / dx**2 +
+            a * u[k, i] * (1 - u[k, i])) # / noisestrength) * noisestrength
+        )
 
 # Plot the results
-x = np.arange(L)
-plt.plot(x, lattice)
-plt.xlabel('Position')
-plt.ylabel('Population')
-plt.title('Birth-Death-Diffusion Simulation')
+x = np.linspace(0, L, N)
+t = np.linspace(0, T, M)
+X, T = np.meshgrid(x, t)
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.plot_surface(X, T, u, cmap='viridis')
+ax.set_xlabel('x')
+ax.set_ylabel('t')
+ax.set_zlabel('u')
 plt.show()
-
-
-    # Plot the results
-    x = np.arange(L)
-    plt.plot(x, lattice)
-    plt.xlabel('Position')
-    plt.ylabel('Population')
-    plt.title('Traveling Wave at Time t = {}'.format(t))
-    plt.show()
-
-# Create the slider widget
-time_slider = widgets.FloatSlider(value=0.0, min=0.0, max=T, step=dt, description='Time')
-
-# Create the interactive plot
-interactive_plot = widgets.interactive(update_plot, t=time_slider)
-
-# Display the interactive plot
-display(interactive_plot)
-
 ------------------
 
 
-[0;36m  Cell [0;32mIn[2], line 50[0;36m[0m
-[0;31m    x = np.arange(L)[0m
+[0;36m  Cell [0;32mIn[2], line 38[0;36m[0m
+[0;31m    x = np.linspace(0, L, N)[0m
 [0m    ^[0m
-[0;31mIndentationError[0m[0;31m:[0m unexpected indent
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
 
 

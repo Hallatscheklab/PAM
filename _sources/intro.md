@@ -1,6 +1,6 @@
-# Lecture Notes on Evolving Active Matter
+# Lecture Notes on Proliferating Active Matter
 
-These lecture notes are a brief summary of four lectures given in the first week of the 2023 Les Houches workshop on Active Matter, broadly interpreted.
+These lecture notes are a brief summary of four lectures given in the first week of the 2023 Les Houches workshop on Proliferating Active Matter, broadly interpreted.
 
 Active Matter is concerned matter that is constantly pushed out of equilibrium by local injection of energy. Energy injection is usually implemented by some kind of mechanical engine converting available (chemical) free energy into mechanical energy. For example, motors or janus particles actuated by light.  
 

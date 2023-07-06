@@ -658,12 +658,12 @@ G(x,\infty|\xi,\tau)=u(\xi,\tau) c(\xi,\tau) \;.
 <h2>Consequences of tip fluctuations<a class="headerlink" href="#consequences-of-tip-fluctuations" title="Permalink to this headline">#</a></h2>
 <div class="section" id="fkpp-waves">
 <h3>FKPP waves<a class="headerlink" href="#fkpp-waves" title="Permalink to this headline">#</a></h3>
-<p>Assuming an overall decay <span class="math notranslate nohighlight">\(c \sim N e^{-v x/(2 D)}\)</span>, it is easy to see that the quadratic cut-off term becomes of comparable to the first order terms when <span class="math notranslate nohighlight">\(x_c \sim \ln(N)\)</span>. For <span class="math notranslate nohighlight">\(x&gt;x_c\)</span>, the density decays faster, <span class="math notranslate nohighlight">\(c\sim e^{-v x/D}\)</span>, just as if there is no growth beyond <span class="math notranslate nohighlight">\(x_c\)</span>. I.e. the leading order effect of the fluctuation-induced term is to introduce a growth cutoff at <span class="math notranslate nohighlight">\(x_c\)</span>. Therefore, the linearized equation</p>
+<p>Assuming an overall decay <span class="math notranslate nohighlight">\(c \sim N e^{-v x/(2 D)}\)</span>, it is easy to see that the quadratic cut-off term becomes of comparable to the first order terms when <span class="math notranslate nohighlight">\(x_c \sim 2\ln(N)D/v\)</span>. For <span class="math notranslate nohighlight">\(x&gt;x_c\)</span>, the density decays faster, <span class="math notranslate nohighlight">\(c\sim e^{-v x/D}\)</span>, just as if there is no growth beyond <span class="math notranslate nohighlight">\(x_c\)</span>. I.e. the leading order effect of the fluctuation-induced term is to introduce a growth cutoff at <span class="math notranslate nohighlight">\(x_c\)</span>. Therefore, the linearized equation</p>
 <div class="math notranslate nohighlight" id="equation-fkpp-linear">
 <span class="eqno">(15)<a class="headerlink" href="#equation-fkpp-linear" title="Permalink to this equation">#</a></span>\[
 \partial_t c =D\partial_x^2 c+ v \partial_x c+r c 
 \]</div>
-<p>has to be solved between <span class="math notranslate nohighlight">\(x=0\)</span> and <span class="math notranslate nohighlight">\(x=\ln(N)\)</span>. To do this, it is convenient to introduce the variable transform</p>
+<p>has to be solved between <span class="math notranslate nohighlight">\(x=0\)</span> and <span class="math notranslate nohighlight">\(x=x_c\)</span>. To do this, it is convenient to introduce the variable transform</p>
 <div class="math notranslate nohighlight" id="equation-var-trafo">
 <span class="eqno">(16)<a class="headerlink" href="#equation-var-trafo" title="Permalink to this equation">#</a></span>\[
 c(x,t)=\phi(x,t) e^{-\frac{vx}{2D}}
@@ -678,17 +678,22 @@ c(x,t)=\phi(x,t) e^{-\frac{vx}{2D}}
 <p>To fix the wave speed, we focus on the ground state,</p>
 <div class="math notranslate nohighlight">
 \[
-\phi_0(x)\sim \cos\left(\frac{\pi x}{\ln(N)\sqrt{D/r}}\right)
+\phi_0(x)\sim \sin\left(\frac{\pi x}{x_c}\right)
 \]</div>
 <p>which solves <a class="reference internal" href="#equation-fkpp-linear-trafo">(17)</a> at steady state (<span class="math notranslate nohighlight">\(\partial_t \phi=0\)</span>) if</p>
 <div class="math notranslate nohighlight">
 \[
-0=-r\left(\frac{\pi }{\ln(N)}\right)^2 + \left(r-\frac{v^2}{4D}\right) 
+0=-D\left(\frac{\pi }{x_c}\right)^2 + \left(r-\frac{v^2}{4D}\right) 
 \]</div>
 <p>implying that</p>
 <div class="math notranslate nohighlight">
 \[
-v = 2\sqrt{D r}\left(1-\frac{\pi^2}{\ln^2 N}\right) \;.
+v = 2\sqrt{D r}\left(1-\frac{\pi^2 D}{x_c^2 r}\right) = 2\sqrt{D r}\left(1-\frac{\pi^2 v^2 }{4\ln(N)^2 D r}\right) \;.
+\]</div>
+<p>Solving this equation, we obtain to leading order</p>
+<div class="math notranslate nohighlight">
+\[
+v = v_F\left(1-\frac{\pi^2 }{\ln(N)^2 }\right) \;.
 \]</div>
 <p>So, the cutoff leads to a reduction of the wave speed, which only slowly vanishes as <span class="math notranslate nohighlight">\(\ln N\)</span> goes to infinity. In particular, it cannot be captured by a perturbation theory in the noise strength <span class="math notranslate nohighlight">\(N^{-1}\)</span>.</p>
 <p>The consequences of the cutoff on genealogical processes are even more pronounced. Without going into the details, we merely argue intuitively here. Due to the the second cutoff, lineages are localized on a scale <span class="math notranslate nohighlight">\(\ln N\)</span> and caused to coalesce on a time scale <span class="math notranslate nohighlight">\(T_c\sim \ln^3 N\)</span>, which diverges when <span class="math notranslate nohighlight">\(N\to \infty\)</span>.</p>
@@ -748,6 +753,68 @@ v\sim 2 s^2 \frac{\ln N }{\ln^2{U}}
 <div class="section" id="naive-expectation">
 <h3>Naive expectation<a class="headerlink" href="#naive-expectation" title="Permalink to this headline">#</a></h3>
 <p>Yet, the wave speed increases very slowly with population size, namely just logarithmically. According to classical population genetics, one would expect a linear increase, <span class="math notranslate nohighlight">\(v= U N s\)</span>, based on the following computation. New beneficial mutations arise at a rate <span class="math notranslate nohighlight">\(U N\)</span>, and each one of those mutations has a survival probability of <span class="math notranslate nohighlight">\(s\)</span>. What’s wrong with that computation? Respectively, when is this computation correct?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Constants</span>
+<span class="n">D</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># Diffusion coefficient</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># Fisher-Kolmogorov parameter</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mf">30.0</span>  <span class="c1"># Length of the domain</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mf">20.0</span>  <span class="c1"># Simulation time</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># Spatial step size</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1"># Time step size</span>
+
+<span class="n">noisestrength</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">sigma0</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># initial width</span>
+<span class="n">N0</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># initial cummulative value</span>
+
+<span class="c1"># Calculate the number of spatial and temporal steps</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">L</span> <span class="o">/</span> <span class="n">dx</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">M</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">T</span> <span class="o">/</span> <span class="n">dt</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="c1"># Initialize the solution matrix</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+
+<span class="c1"># Set the initial condition</span>
+<span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">N0</span><span class="o">/</span><span class="p">(</span><span class="n">sigma0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span> <span class="o">-</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sigma0</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+                      
+<span class="c1">#u[0, :] = np.sin(np.pi * np.linspace(0, L, N) / L)</span>
+
+<span class="c1"># Apply the finite difference method</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">u</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">((</span><span class="n">u</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="n">D</span> <span class="o">*</span> <span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">u</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span>
+            <span class="n">a</span> <span class="o">*</span> <span class="n">u</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">]))</span> <span class="c1"># / noisestrength) * noisestrength</span>
+        <span class="p">)</span>
+
+<span class="c1"># Plot the results</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">38</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
 <div class="admonition-speed-of-adaptation admonition">
 <p class="admonition-title">Speed of adaptation</p>
 <p>The speed of adaptation scales with the log of the population size, much slower than naively expected (based on sequential selection) yet still diverging if number fluctuations are neglected (<span class="math notranslate nohighlight">\(N\to \infty\)</span>).</p>
